@@ -1,0 +1,80 @@
+ionic-shell-tabs-buttons {
+  $green: #4CAF50;
+  $tab-font-color: #3a3a3a;
+  $tab-font-weight: 600;
+  $active-tab-color: $green;
+  $inactive-tab-color: rgba(0, 0, 0, 0.4);
+  $tab-indicator-height: 0.2rem;
+  $base-font-size: 1rem;
+  $tab-link-space: $base-font-size;
+  $loader-width: 0.3em;
+  $loader-dimensions: 4em;
+  $reloader-icon-size: 4em;
+
+  .tabs-link {
+    background-color: white;
+    font-size: 0;
+    color: $tab-font-color;
+    font-weight: $tab-font-weight;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: $inactive-tab-color;
+
+    /*&.equal-tabs{
+      .tab-link{
+        white-space: normal;
+      }
+    }*/
+
+    .tab-link {
+      &.small-font{
+        white-space: normal;
+        font-size: 0.7rem;
+      }
+      >span{
+        max-width: 9em;
+        display: inline-block;
+      }
+      text-align: center;
+      font-size: $base-font-size;
+      display: inline-block;
+      padding: 1em;
+      cursor: pointer;
+      position: relative;
+      vertical-align: middle;
+
+      &.active{
+        color: $active-tab-color;
+      }
+      .tab-link-icon{
+        $icon-scale: 1.5;
+        transform: scale($icon-scale, $icon-scale);
+        display: block;
+      }
+      .tab-link-text{
+        display: block;
+        margin-top: 0.5em;
+      }
+    }
+
+    .tab-indicator {
+      height: $tab-indicator-height;
+
+      .indicator-helper {
+        transform-origin: 0 0;
+        width: 1px;
+        height: 100%;
+        display: inline-block;
+
+        .indicator {
+          height: 100%;
+          width: 1px;
+          background-color: $green;
+          display: inline-block;
+          will-change: transform;
+        }
+
+      }
+    }
+  }
+}
