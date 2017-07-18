@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IonicShellProvider } from '../providers/ionic-shell';
 
-/**
- * Generated class for the IonicShellComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({
   selector: 'ionic-shell',
   templateUrl: 'ionic-shell.html'
 })
 export class IonicShellComponent {
 
-  constructor() {
+  @Input() private bottomTabs: boolean;
+
+  constructor(
+    private _ionicShellProvider: IonicShellProvider
+  ) {
     console.log('Hello IonicShellComponent Component');
+  }
+
+  ngOnInit() {
+    this._ionicShellProvider.bottomTabs.next( this.bottomTabs );
   }
 
 }

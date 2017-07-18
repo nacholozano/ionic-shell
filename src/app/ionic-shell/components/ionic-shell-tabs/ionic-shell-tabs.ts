@@ -1,22 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, ContentChildren, QueryList } from '@angular/core';
+import { IonicShellTabComponent } from '../ionic-shell-tab/ionic-shell-tab';
+import { IonicShellProvider } from '../../providers/ionic-shell';
 
-/**
- * Generated class for the IonicShellTabsComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({
   selector: 'ionic-shell-tabs',
   templateUrl: 'ionic-shell-tabs.html'
 })
 export class IonicShellTabsComponent {
 
-  text: string;
+  @ContentChildren(IonicShellTabComponent) tabs: QueryList<IonicShellTabComponent>;
 
-  constructor() {
+  constructor(
+    private _ionicShellProvider: IonicShellProvider
+  ) {
     console.log('Hello IonicShellTabsComponent Component');
-    this.text = 'Hello World';
+  }
+
+  ngAfterViewInit() {
+    console.log( this.tabs );
+    this._populateTabsButtons();
+  }
+
+  private _populateTabsButtons(): void {
+    const tabs = [];
+    this.tabs.toArray().forEach( tab => {
+      tabs.push( tab.text );
+    });
+    this._ionicShellProvider.tabsLabels.next(tabs);
   }
 
 }

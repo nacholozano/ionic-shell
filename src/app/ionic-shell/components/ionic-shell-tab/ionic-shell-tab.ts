@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class IonicShellTabComponent {
 
-  @Input() text: string;
+  @Input() public text: string;
 
   constructor() {
     console.log('Hello IonicShellTabComponent Component');

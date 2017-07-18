@@ -3,6 +3,6 @@
 
   <ng-content></ng-content>
 
-  <ionic-shell-tabs-buttons [tabsLabel]="['uno', 'dos', 'tres']"></ionic-shell-tabs-buttons>
+  <ionic-shell-tabs-buttons *ngIf="bottomTabs"></ionic-shell-tabs-buttons>
 
 </div>

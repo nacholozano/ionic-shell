@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IonicShellProvider } from '../../providers/ionic-shell';
 
 @Component({
   selector: 'ionic-shell-tabs-buttons',
@@ -6,10 +7,20 @@ import { Component, Input } from '@angular/core';
 })
 export class IonicShellTabsButtonsComponent {
 
-  @Input() tabsLabel: string[];
+  //@Input() tabsLabel: string[];
 
-  constructor() {
+  public tabsLabel: string[];
+
+  constructor(
+    private _ionicShellProvider: IonicShellProvider
+  ) {
     console.log('Hello IonicShellTabsButtonsComponent Component');
+  }
+
+  ngOnInit() {
+    this._ionicShellProvider.tabsLabels.subscribe( tabsLabel => {
+      this.tabsLabel = tabsLabel;
+    });
   }
 
 }

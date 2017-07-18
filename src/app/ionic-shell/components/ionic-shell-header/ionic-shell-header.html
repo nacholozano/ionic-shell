@@ -8,7 +8,7 @@
     </span>
   </div>
 
-  <ionic-shell-tabs-buttons [tabsLabel]="['uno', 'dos', 'tres']"></ionic-shell-tabs-buttons>
+  <ionic-shell-tabs-buttons *ngIf="!bottomButtons"></ionic-shell-tabs-buttons>
 
   <span class="tab-reloader-container" aria-hidden="true">
     <span class="tab-reloader">

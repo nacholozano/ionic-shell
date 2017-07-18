@@ -13,6 +13,8 @@ import { IonicShellTabsComponent } from './components/ionic-shell-tabs/ionic-she
 import { IonicShellTabComponent } from './components/ionic-shell-tab/ionic-shell-tab';
 import { IonicShellTabsButtonsComponent } from './components/ionic-shell-tabs-buttons/ionic-shell-tabs-buttons';
 
+import { IonicShellProvider } from './providers/ionic-shell';
+
 @NgModule({
   declarations: [
     IonicShellComponent,
@@ -48,6 +50,7 @@ import { IonicShellTabsButtonsComponent } from './components/ionic-shell-tabs-bu
     IonicShellTabsButtonsComponent
   ],
   providers: [
+    IonicShellProvider
     /*StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}*/
