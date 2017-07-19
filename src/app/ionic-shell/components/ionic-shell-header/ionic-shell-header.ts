@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
 
 @Component({
@@ -6,6 +6,8 @@ import { IonicShellProvider } from '../../providers/ionic-shell';
   templateUrl: 'ionic-shell-header.html'
 })
 export class IonicShellHeaderComponent {
+
+  @ViewChild('ionHeader') ionHeader;
 
   @Input() private text: string;
   public bottomButtons: boolean;
@@ -20,6 +22,10 @@ export class IonicShellHeaderComponent {
     this._ionicShellProvider.bottomTabs.subscribe( bottom => {
       this.bottomButtons = bottom;
     });
+  }
+
+  ngAfterViewInit() {
+    this._ionicShellProvider.headerHeight.next( this.ionHeader.nativeElement.clientHeight );
   }
 
 }

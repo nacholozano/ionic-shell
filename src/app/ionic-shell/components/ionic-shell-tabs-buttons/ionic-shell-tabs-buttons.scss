@@ -11,7 +11,19 @@ ionic-shell-tabs-buttons {
   $loader-dimensions: 4em;
   $reloader-icon-size: 4em;
 
+  display: block;
+  overflow-x: auto;
+  background-color: white;
+  font-size: 0;
+  color: $tab-font-color;
+  font-weight: $tab-font-weight;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: $inactive-tab-color;
+
   .tabs-link {
+    display: block;
+    overflow-x: auto;
     background-color: white;
     font-size: 0;
     color: $tab-font-color;
@@ -26,7 +38,7 @@ ionic-shell-tabs-buttons {
       }
     }*/
 
-    .tab-link {
+    /*.tab-link {
       &.small-font{
         white-space: normal;
         font-size: 0.7rem;
@@ -55,7 +67,7 @@ ionic-shell-tabs-buttons {
         display: block;
         margin-top: 0.5em;
       }
-    }
+    }*/
 
     .tab-indicator {
       height: $tab-indicator-height;

@@ -1,12 +1,21 @@
 <div class="tabs-header-container">
 
-  <div class="tabs-header">
-    {{ text }}
-    <span>
-      &#9881;
-      &#9822;
-    </span>
-  </div>
+  <ion-header #ionHeader>
+    <ion-navbar>
+      <!--<button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>-->
+
+      <ion-title>
+        {{ text }}
+      </ion-title>
+
+      <ion-buttons end>
+        <ng-content></ng-content>
+      </ion-buttons>
+    </ion-navbar>
+
+  </ion-header>
 
   <ionic-shell-tabs-buttons *ngIf="!bottomButtons"></ionic-shell-tabs-buttons>
 
