@@ -1,5 +1,6 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
+import { SegmentButton, Segment } from 'ionic-angular';
 
 @Component({
   selector: 'ionic-shell-tabs-buttons',
@@ -18,8 +19,11 @@ export class IonicShellTabsButtonsComponent {
   @HostBinding('style.bottom')
   private _bottom: number;
 
+  icons;
+
   constructor(
-    private _ionicShellProvider: IonicShellProvider
+    private _ionicShellProvider: IonicShellProvider,
+    private _el: ElementRef
   ) {
     console.log('Hello IonicShellTabsButtonsComponent Component');
   }
@@ -43,6 +47,14 @@ export class IonicShellTabsButtonsComponent {
       }
     });
 
+    //this._ionicShellProvider.buttonsTabsHeight.next( this._el.nativeElement.clientHeight );
+
   }
+
+  /*ngDoCheck() {
+    if ( this._el.nativeElement.clientHeight ) {
+
+    }
+  }*/
 
 }
