@@ -6,12 +6,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { UnoPage } from '../pages/uno/uno';
 import { IonicShellModule } from './ionic-shell/ionic-shell.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    // UnoPage
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import { IonicShellModule } from './ionic-shell/ionic-shell.module';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    // UnoPage
   ],
   providers: [
     StatusBar,
