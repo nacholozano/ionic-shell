@@ -1,10 +1,7 @@
-<div class="tabs-header-container">
+<div #headerContainer class="tabs-header-container">
 
   <ion-header #ionHeader>
     <ion-navbar>
-      <!--<button ion-button icon-only menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>-->
 
       <ion-title>
         {{ text }}
@@ -17,7 +14,7 @@
 
   </ion-header>
 
-  <ionic-shell-tabs-buttons *ngIf="!bottomButtons"></ionic-shell-tabs-buttons>
+  <ionic-shell-tabs-buttons #buttons *ngIf="!bottomButtons"></ionic-shell-tabs-buttons>
 
   <span class="tab-reloader-container" aria-hidden="true">
     <span class="tab-reloader">

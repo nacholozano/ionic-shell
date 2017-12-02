@@ -11,51 +11,20 @@ import { IonicShellProvider } from '../../providers/ionic-shell';
 import { TransitionController } from 'ionic-angular/transitions/transition-controller';
 import { IonicShellTabsComponent } from '../ionic-shell-tabs/ionic-shell-tabs';
 
-// import { ChangeDetectorRef, Component, ComponentFactoryResolver,
-  /* ComponentRef, ElementRef, ErrorHandler, EventEmitter,
-  Input, NgZone, Optional, Output, Renderer, ViewChild,
-  ViewContainerRef, ViewEncapsulation } from '@angular/core'; */
-
-/* import { App } from '../app/app';
-import { Config } from '../../config/config';
-import { DeepLinker } from '../../navigation/deep-linker';
-import { DomController } from '../../platform/dom-controller';
-import { GestureController } from '../../gestures/gesture-controller';
-import { isTrueProperty } from '../../util/util';
-import { Tab as ITab } from '../../navigation/nav-interfaces';
-import { NavControllerBase } from '../../navigation/nav-controller-base';
-import { NavOptions } from '../../navigation/nav-util';
-import { Platform } from '../../platform/platform';
-import { TabButton } from './tab-button';
-import { Tabs } from './tabs';
-import { TransitionController } from '../../transitions/transition-controller';
-import { ViewController } from '../../navigation/view-controller'; */
-
 @Component({
   selector: 'ionic-shell-tab',
-  templateUrl: 'ionic-shell-tab.html',
-  /* providers: [
-    {
-      provide: RootNode,
-      useExisting: forwardRef(() => IonicShellTabsComponent)
-    }
-  ] */
+  templateUrl: 'ionic-shell-tab.html'
 })
 export class IonicShellTabComponent extends NavControllerBase {
 
   @Input() public text: string;
   @Input() root: any;
 
-  /* private _paddingDefault: number = 10;
-
   @HostBinding('style.paddingTop')
-  private _paddingTop: string = this._paddingDefault + 'px';
+  private _paddingTop: string;
 
   @HostBinding('style.paddingBottom')
-  private _paddingBottom: string = this._paddingDefault + 'px';
-
-  private _headerHeight: number = 0;
-  private _buttonTabsHeight: number = 0; */
+  private _paddingBottom: string;
 
   /**
    * Indicates whether the tab has been loaded
@@ -88,24 +57,20 @@ export class IonicShellTabComponent extends NavControllerBase {
     errHandler: ErrorHandler
   ) {
     super(parent, app, config, plt, elementRef, zone, renderer, cfr, gestureCtrl, transCtrl, linker, _dom, errHandler);
-    console.log('Hello IonicShellTabComponent Component');
+    // console.log('Hello IonicShellTabComponent Component');
   }
 
   ngAfterViewInit() {
     this.load(true);
-    /* this._ionicShellProvider.headerHeight.subscribe( headerHeight => {
-      this._headerHeight = headerHeight;
-      this._paddingTop = this._paddingDefault + headerHeight + 'px';
+
+    this._ionicShellProvider.buttonsHeight.subscribe( height => {
+      this._paddingTop = height + 15 + 'px';
+      const c = 5 +7 ;
     });
-    this._ionicShellProvider.bottomTabs.subscribe( bottom => {
-      this._ionicShellProvider.buttonsTabsHeight.subscribe( buttonsTabsHeight => {
-        if ( bottom ) {
-          this._paddingBottom = buttonsTabsHeight + 'px';
-        }else {
-          this._paddingTop = buttonsTabsHeight + this._headerHeight + this._paddingDefault + 'px';
-        }
-      });
-    }); */
+
+    this._ionicShellProvider.buttonsBottoms.subscribe( height => {
+      this._paddingBottom = height + 15 + 'px';
+    });
   }
 
   ngOnInit() {

@@ -12,11 +12,19 @@ export class IonicShellComponent {
   constructor(
     private _ionicShellProvider: IonicShellProvider
   ) {
-    console.log('Hello IonicShellComponent Component');
   }
 
   ngOnInit() {
     this._ionicShellProvider.bottomTabs.next( this.bottomTabs );
+  }
+
+  ngAfterViewInit(){
+    setTimeout(() => {
+      this._ionicShellProvider.buttonsHeight.next( this._ionicShellProvider._headerRef.clientHeight );
+      if ( this._ionicShellProvider._buttonsRef ) {
+        this._ionicShellProvider.buttonsBottoms.next( this._ionicShellProvider._buttonsRef.clientHeight );
+      }
+    });
   }
 
 }

@@ -7,20 +7,10 @@ import { IonicShellProvider } from '../../providers/ionic-shell';
 import { RootNode, DomController, DeepLinker,
   ViewController, NavController, App,
   NavControllerBase } from 'ionic-angular';
-/* mport {
-  NavController, RootNode, NavControllerBase, ViewController, App, DeepLinker,
-  DomController
-} from 'ionic-angular'; */
 
 @Component({
   selector: 'ionic-shell-tabs',
-  templateUrl: 'ionic-shell-tabs.html',
-  /* providers: [
-    {
-      provide: RootNode,
-      useExisting: forwardRef(() => IonicShellTabsComponent)
-    }
-  ] */
+  templateUrl: 'ionic-shell-tabs.html'
 })
 export class IonicShellTabsComponent {
 
@@ -40,7 +30,6 @@ export class IonicShellTabsComponent {
     private linker: DeepLinker,
     private domCtrl: DomController
   ) {
-    console.log('Hello IonicShellTabsComponent Component');
     this.parent = <NavControllerBase>parent;
   }
 

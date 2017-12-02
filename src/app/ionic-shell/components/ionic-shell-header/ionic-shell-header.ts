@@ -8,6 +8,7 @@ import { IonicShellProvider } from '../../providers/ionic-shell';
 export class IonicShellHeaderComponent {
 
   @ViewChild('ionHeader') ionHeader;
+  @ViewChild('headerContainer') headerContainer;
 
   @Input() private text: string;
   public bottomButtons: boolean;
@@ -15,7 +16,6 @@ export class IonicShellHeaderComponent {
   constructor(
     private _ionicShellProvider: IonicShellProvider
   ) {
-    console.log('Hello IonicShellHeaderComponent Component');
   }
 
   ngOnInit() {
@@ -25,7 +25,15 @@ export class IonicShellHeaderComponent {
   }
 
   ngAfterViewInit() {
-    this._ionicShellProvider.headerHeight.next( this.ionHeader.nativeElement.clientHeight );
+    // this._ionicShellProvider.headerHeight.next( this.ionHeader.nativeElement.clientHeight );
+    this._ionicShellProvider._headerRef = this.headerContainer.nativeElement;
+  }
+
+  ngDoCheck(){
+    /*if( !this._ionicShellProvider.alturaHeader && this.headerContainer.nativeElement.clientHeight && this._ionicShellProvider.buttonsHeight ){
+      this._ionicShellProvider.alturaHeader = true;
+      this._ionicShellProvider.buttonsHeight.next( this.headerContainer.nativeElement.clientHeight );
+    }*/
   }
 
 }

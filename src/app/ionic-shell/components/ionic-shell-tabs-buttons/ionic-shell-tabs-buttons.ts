@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding, ElementRef } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, ViewChild } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
 import { SegmentButton, Segment } from 'ionic-angular';
 
@@ -10,8 +10,10 @@ export class IonicShellTabsButtonsComponent {
 
   public tabsLabel: string[];
 
-  @HostBinding('style.marginTop')
-  private _headerHeight: string;
+  @ViewChild('buttons') buttons;
+
+  /*@HostBinding('style.paddingTop')
+  private _headerHeight: string;*/
 
   @HostBinding('style.position')
   private _position: string;
@@ -25,7 +27,6 @@ export class IonicShellTabsButtonsComponent {
     private _ionicShellProvider: IonicShellProvider,
     private _el: ElementRef
   ) {
-    console.log('Hello IonicShellTabsButtonsComponent Component');
   }
 
   ngOnInit() {
@@ -40,21 +41,16 @@ export class IonicShellTabsButtonsComponent {
       if ( bottom ) {
         this._position = 'absolute';
         this._bottom = 0;
-      }else{
+        this._ionicShellProvider._buttonsRef = this.buttons.nativeElement;
+      }
+      /*else{
         this._ionicShellProvider.headerHeight.subscribe( height => {
           this._headerHeight = height + 'px';
         });
-      }
+      }*/
+
     });
 
-    //this._ionicShellProvider.buttonsTabsHeight.next( this._el.nativeElement.clientHeight );
-
   }
-
-  /*ngDoCheck() {
-    if ( this._el.nativeElement.clientHeight ) {
-
-    }
-  }*/
 
 }
