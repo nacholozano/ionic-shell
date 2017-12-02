@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from "./home";
 // import {SharedModule} from "../../app/shared.module";
+import { IonicShellModule } from '../../app/ionic-shell/ionic-shell.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { HomePage } from "./home";
   ],
   imports: [
     IonicPageModule.forChild(HomePage),
+    IonicShellModule
     // SharedModule
   ]
 })
-export class Module {}
+export class HomeModule {}

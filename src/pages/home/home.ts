@@ -15,7 +15,7 @@ export class HomePage {
   uno:any = UnoPage;
   dos:any = DosPage;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private navParams: NavParams) {
 
   }
 

@@ -10,4 +10,4 @@ import { DosPage } from "./dos";
     IonicPageModule.forChild(DosPage)
   ]
 })
-export class Module {}
+export class DosModule {}

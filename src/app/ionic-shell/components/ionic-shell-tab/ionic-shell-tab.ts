@@ -122,7 +122,7 @@ export class IonicShellTabComponent extends NavControllerBase {
     }
   }
 
-  goToRoot(opts: NavOptions): Promise<any> {
+  goToRoot(opts: NavOptions): Promise<any> | any {
     return this.setRoot(this.root, {}, opts, null);
   }
 

@@ -8,22 +8,28 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UnoPage } from '../pages/uno/uno';
 import { IonicShellModule } from './ionic-shell/ionic-shell.module';
+import { HomeModule } from '../pages/home/home.module';
+import { UnoModule } from '../pages/uno/uno.module';
+import { DosModule } from '../pages/dos/dos.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
+    // HomePage,
     // UnoPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicShellModule
+    IonicShellModule.forRoot(),
+    HomeModule,
+    UnoModule,
+    DosModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    // HomePage,
     // UnoPage
   ],
   providers: [

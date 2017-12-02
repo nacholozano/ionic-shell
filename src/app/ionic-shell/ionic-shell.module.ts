@@ -1,5 +1,5 @@
 /*import { BrowserModule } from '@angular/platform-browser';*/
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';
 /*import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -27,14 +27,14 @@ import { IonicShellProvider } from './providers/ionic-shell';
     HomePage*/
   ],
   imports: [
-    CommonModule,
+    // CommonModule,
     IonicModule
     /*BrowserModule,
     IonicModule.forRoot(MyApp)*/
   ],
-  bootstrap: [
-    /*IonicApp*/
-  ],
+  /*bootstrap: [
+    IonicApp
+  ],*/
   entryComponents: [
     IonicShellComponent,
     IonicShellHeaderComponent,
@@ -51,11 +51,20 @@ import { IonicShellProvider } from './providers/ionic-shell';
     IonicShellTabComponent,
     IonicShellTabsButtonsComponent
   ],
-  providers: [
-    IonicShellProvider
+  //providers: [
+    // IonicShellProvider
     /*StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}*/
-  ]
+  //]
 })
-export class IonicShellModule {}
+export class IonicShellModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: IonicShellModule,
+      providers: [
+        IonicShellProvider
+      ]
+    };
+  }
+}

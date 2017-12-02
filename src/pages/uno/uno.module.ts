@@ -8,9 +8,6 @@ import { UnoPage } from "./uno";
   ],
   imports: [
     IonicPageModule.forChild(UnoPage)
-  ],
-  entryComponents: [
-    UnoPage
   ]
 })
-export class Module {}
+export class UnoModule {}
