@@ -13,5 +13,9 @@ ionic-shell-tab {
   /*}*/
   .ion-page{
     position: initial;
+    overflow: auto;
+    .scroll-content{
+      overflow: hidden;
+    }
   }
 }
