@@ -24,7 +24,7 @@ export class IonicShellTabsButtonsComponent {
   icons;
 
   constructor(
-    private _ionicShellProvider: IonicShellProvider,
+    public _ionicShellProvider: IonicShellProvider,
     private _el: ElementRef
   ) {
   }

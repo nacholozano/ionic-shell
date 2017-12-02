@@ -1,5 +1,5 @@
 <div #buttons>
-  <button ion-button *ngFor="let tabLabel of tabsLabel">
+  <button ion-button *ngFor="let tabLabel of tabsLabel; let index = index" (click)="_ionicShellProvider.ionicShellTabsComponent.changeTab(index)">
     <ion-icon name="camera"></ion-icon>
     <div>{{ tabLabel }}</div>
   </button>

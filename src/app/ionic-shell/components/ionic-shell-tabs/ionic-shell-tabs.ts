@@ -19,6 +19,8 @@ export class IonicShellTabsComponent {
   private _tabs: IonicShellTabComponent[] = [];
   parent: NavControllerBase;
 
+  transform: string;
+
   constructor(
     private _ionicShellProvider: IonicShellProvider,
     @Optional() parent: NavController,
@@ -31,6 +33,10 @@ export class IonicShellTabsComponent {
     private domCtrl: DomController
   ) {
     this.parent = <NavControllerBase>parent;
+  }
+
+  ngOnInit(){
+    this._ionicShellProvider.ionicShellTabsComponent = this;
   }
 
   ngAfterViewInit() {
@@ -48,6 +54,17 @@ export class IonicShellTabsComponent {
 
   public addTab(tab: IonicShellTabComponent ): void {
     this._tabs.push(tab);
+  }
+
+  public changeTab(index: number) {
+    this.transform = 'translateX(' + (index * -100) + '%)';
+    /*this.tabs.toArray().forEach( (tab, i) => {
+      if ( i  === index ) {
+        tab.active = true;
+      }else {
+        tab.active = false;
+      }
+    });*/
   }
 
 }

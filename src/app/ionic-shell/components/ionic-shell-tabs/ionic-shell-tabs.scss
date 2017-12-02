@@ -10,6 +10,7 @@ ionic-shell-tabs {
       height:100%;
       width: 100%;
       will-change: transform;
+      transition: transform 0.3s;
     }
   }
 }
