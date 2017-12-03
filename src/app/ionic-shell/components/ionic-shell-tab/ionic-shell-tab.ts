@@ -10,6 +10,7 @@ import { NavControllerBase, App, Config,
 import { IonicShellProvider } from '../../providers/ionic-shell';
 import { TransitionController } from 'ionic-angular/transitions/transition-controller';
 import { IonicShellTabsComponent } from '../ionic-shell-tabs/ionic-shell-tabs';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ionic-shell-tab',
@@ -32,9 +33,25 @@ export class IonicShellTabComponent extends NavControllerBase {
    */
   private loaded: boolean = false;
 
+  @ViewChild('viewport') v2;
+  /*set _vp2(val) {
+    if ( val.nativeElement ) {
+      Observable.fromEvent( val.nativeElement, 'scroll' )
+      .subscribe( () => {
+        console.log('ayer');
+      });
+    }
+    // console.log( val );
+  }*/
+
   @ViewChild('viewport', {read: ViewContainerRef})
   set _vp(val: ViewContainerRef) {
     this.setViewport(val);
+
+    /*Observable.fromEvent( val, 'scroll' )
+    .subscribe( () => {
+      console.log('ayer');
+    });*/
   }
 
   constructor(
@@ -63,14 +80,16 @@ export class IonicShellTabComponent extends NavControllerBase {
   ngAfterViewInit() {
     this.load(true);
 
-    this._ionicShellProvider.buttonsHeight.subscribe( height => {
+    /*this._ionicShellProvider.buttonsHeight.subscribe( height => {
       this._paddingTop = height + 15 + 'px';
       const c = 5 +7 ;
     });
 
     this._ionicShellProvider.buttonsBottoms.subscribe( height => {
       this._paddingBottom = height + 15 + 'px';
-    });
+    });*/
+
+
   }
 
   ngOnInit() {

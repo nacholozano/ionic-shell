@@ -12,9 +12,15 @@ export class IonicShellProvider {
   public _headerRef;
   public _buttonsRef;
 
+  public medioHeader: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
   public buttonsBottoms: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   public ionicShellTabsComponent;
+
+  public hideHeader: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public headerScroll = 0;
+  public distanceToToggleHeader = 30;
 
   constructor() {
   }

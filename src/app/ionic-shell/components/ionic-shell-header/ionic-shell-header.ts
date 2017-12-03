@@ -13,6 +13,8 @@ export class IonicShellHeaderComponent {
   @Input() private text: string;
   public bottomButtons: boolean;
 
+  transform;
+
   constructor(
     private _ionicShellProvider: IonicShellProvider
   ) {
@@ -22,10 +24,21 @@ export class IonicShellHeaderComponent {
     this._ionicShellProvider.bottomTabs.subscribe( bottom => {
       this.bottomButtons = bottom;
     });
+
+    this._ionicShellProvider.hideHeader.subscribe( hide =>{
+      if( hide ) {
+        // this._ionicShellProvider.
+        this._ionicShellProvider.medioHeader.subscribe( height => {
+          this.transform = 'translateY(-' + height + 'px)';
+        });
+      }else{
+        this.transform = 'translateY(0)';
+      }
+    });
   }
 
   ngAfterViewInit() {
-    // this._ionicShellProvider.headerHeight.next( this.ionHeader.nativeElement.clientHeight );
+    this._ionicShellProvider.medioHeader.next( this.ionHeader.nativeElement.clientHeight );
     this._ionicShellProvider._headerRef = this.headerContainer.nativeElement;
   }
 
