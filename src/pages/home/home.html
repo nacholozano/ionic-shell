@@ -1,5 +1,15 @@
 <ion-content>
 
+  <!--<ion-menu [content]="mycontent">
+    <ion-content>
+      <ion-list>
+        <p>some menu content, could be list items</p>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <div #mycontent>prueba menu</div>-->
+
   <ionic-shell [bottomTabs]="false">
 
     <ionic-shell-header text="header">
@@ -8,7 +18,8 @@
       </button>
     </ionic-shell-header>
 
-    <ionic-shell-tabs paginationType="none" [pager]="false">
+    <ionic-shell-tabs>
+      <!--paginationType="none" [pager]="false"-->
       <ionic-shell-tab [root]="uno" style="background-color: green"></ionic-shell-tab>
       <ionic-shell-tab [root]="dos"></ionic-shell-tab>
       <!-- <ionic-shell-tab text="3">3</ionic-shell-tab> -->
