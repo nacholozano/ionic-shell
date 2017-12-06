@@ -122,6 +122,7 @@ export class IonicShellTabsButtonsComponent {
 
   tabHideRigthPart( numTab ){
     return this._el.nativeElement.clientWidth+this._el.nativeElement.scrollLeft < this._tabs[ numTab ].right
+
   }
 
   decreaseScroll( ){
@@ -170,8 +171,8 @@ export class IonicShellTabsButtonsComponent {
 
       this.tabsScroll.requestAnimationFrameReference = requestAnimationFrame( () => this.increaseScroll() );
     }
-  }
 
+  }
   /*updateIndicator(){
     dom.indicator.style.transform =  "scaleX(" + tabsData[tabsViews.currentTab].width + ")";
     dom.indicatorHelper.style.transform = "translateX("+ tabsData[tabsViews.currentTab].marginLeft +"px)";
