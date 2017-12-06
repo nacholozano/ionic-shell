@@ -22,6 +22,9 @@ export class IonicShellTabsButtonsComponent {
   @ViewChild('buttons') buttons;
   @ViewChildren('button') button: QueryList<any>;
 
+  @ViewChild('indicatorHelper') indicatorHelper;
+  @ViewChild('indicator') indicator;
+
   /*@HostBinding('style.paddingTop')
   private _headerHeight: string;*/
 
@@ -46,6 +49,7 @@ export class IonicShellTabsButtonsComponent {
 
     this._ionicShellProvider.ionicShellTabsComponent.ionSlideDidChange.subscribe( () =>{
       this.manageTabs(this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex());
+      this.updateIndicator();
     });
   }
 
@@ -87,7 +91,7 @@ export class IonicShellTabsButtonsComponent {
         if( i ){
           tab.left = this._tabs[i-1].right;
           tab.right = this.trimDecimals(tab.left + tab.width);
-          // tab.translatePX = -( tabsViews.containerWdith + Math.abs(tabsData[ index - 1 ].translatePX) );
+          tab.translatePX = -( document.body.clientWidth + Math.abs(this._tabs[ i - 1 ].translatePX) );
         }else{
           tab.left = 0;
           tab.right = tab.width;
@@ -97,7 +101,7 @@ export class IonicShellTabsButtonsComponent {
         tab.marginLeft = tab.left + tab.center;
 
         if( this._tabs[i - 1] ){
-          // tab.previousTabScreenRatio = (tab.marginLeft - tabsData[index-1].marginLeft) / tabsViews.containerWdith;
+          tab.previousTabScreenRatio = (tab.marginLeft - this._tabs[i-1].marginLeft) / document.body.clientWidth;
         }
 
         this._tabs.push(tab);
@@ -173,9 +177,10 @@ export class IonicShellTabsButtonsComponent {
     }
 
   }
-  /*updateIndicator(){
-    dom.indicator.style.transform =  "scaleX(" + tabsData[tabsViews.currentTab].width + ")";
-    dom.indicatorHelper.style.transform = "translateX("+ tabsData[tabsViews.currentTab].marginLeft +"px)";
-  }*/
+
+  updateIndicator(){
+    this.indicatorHelper.nativeElement.style.transform = "scaleX(" + this._tabs[this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex()].width + ")";
+    this.indicator.nativeElement.style.transform  = "translateX("+ this._tabs[this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex()].marginLeft +"px)";
+  }
 
 }
