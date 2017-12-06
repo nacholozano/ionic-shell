@@ -1,7 +1,10 @@
 <div #buttons>
   <button ion-button #button *ngFor="let tabLabel of tabsLabel; let index = index" (click)="changeTab(index)">
     <!--<ion-icon name="camera"></ion-icon>-->
-    asdasdasd
+    <ng-container *ngIf="!tabLabel">
+      asdasdasd
+    </ng-container>
+    {{ tabLabel }}
     <!-- <div>{{ tabLabel }}</div> -->
   </button>
   <div class="tab-indicator">
