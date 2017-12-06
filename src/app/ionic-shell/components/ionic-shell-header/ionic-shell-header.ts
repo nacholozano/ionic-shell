@@ -35,6 +35,8 @@ export class IonicShellHeaderComponent {
         this.transform = 'translateY(0)';
       }
     });
+
+    this._ionicShellProvider.headerref = this;
   }
 
   ngAfterViewInit() {

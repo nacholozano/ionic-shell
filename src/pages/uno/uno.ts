@@ -1,4 +1,4 @@
-import { Component, HostListener, HostBinding } from '@angular/core';
+import { Component, HostListener, HostBinding, ElementRef } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { IonicShellProvider } from '../../app/ionic-shell/providers/ionic-shell';
 
@@ -15,17 +15,41 @@ import { IonicShellProvider } from '../../app/ionic-shell/providers/ionic-shell'
 })
 export class UnoPage {
 
+  num;
+
   @HostBinding('style.paddingTop')
   private _paddingTop: string;
 
   @HostBinding('style.paddingBottom')
   private _paddingBottom: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private IonicShellProvider:IonicShellProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private IonicShellProvider:IonicShellProvider,
+    private _el: ElementRef) {
+  }
+
+  ngOnInit(){
+    this.IonicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe(data => {
+      // this.IonicShellProvider.headerScroll = this._el.nativeElement.scrollTop;
+      if ( data.realIndex !== this.num ){ return; }
+      console.log(data);
+      let h;
+      this.IonicShellProvider.buttonsHeight.subscribe(c => {
+        h = c;
+      });
+      if ( this._el.nativeElement.scrollTop < h ) {
+        // dom.tabsHeaderContainer.style.transform = 'translateY(0px)';
+        this.IonicShellProvider.headerref.transform = 'translateY(0)';
+      }
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UnoPage');
+    console.log('ionViewDidLoad UnoPage', this.IonicShellProvider.num);
+    this.num = this.IonicShellProvider.num;
+    this.IonicShellProvider.num++;
 
     this.IonicShellProvider.buttonsBottoms.subscribe( height => {
       this._paddingBottom = height + 'px';

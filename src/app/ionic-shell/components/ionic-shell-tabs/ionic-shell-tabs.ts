@@ -79,7 +79,7 @@ export class IonicShellTabsComponent extends Slides {
   }
 
   a(){
-    this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.emit(Math.random());
+    this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.emit( this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex() );
     console.log(345);
   }
 

@@ -22,6 +22,9 @@ export class IonicShellProvider {
   public headerScroll = 0;
   public distanceToToggleHeader = 30;
 
+  num = 0;
+  headerref;
+
   constructor() {
   }
 
