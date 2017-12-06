@@ -104,12 +104,14 @@ ionic-shell-tabs-buttons {
   // font-size: 1rem;
 
   .indicator-helper {
+    // transition: transform 0.3s;
     transform-origin: 0 0;
     width: 1px;
     height: 100%;
     display: inline-block;
 
     .indicator {
+      // transition: transform 0.3s;
       height: 100%;
       width: 1px;
       background-color: green;

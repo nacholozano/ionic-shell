@@ -78,15 +78,9 @@ export class IonicShellTabsComponent extends Slides {
     this._tabs.push(tab);
   }
 
-  /*public changeTab(index: number) {
-    this.transform = 'translateX(' + (index * -100) + '%)';
-    //this.tabs.toArray().forEach( (tab, i) => {
-      //if ( i  === index ) {
-        //tab.active = true;
-      //}else {
-        //tab.active = false;
-      //}
-    //});
-  }*/
+  a(){
+    this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.emit(Math.random());
+    console.log(345);
+  }
 
 }

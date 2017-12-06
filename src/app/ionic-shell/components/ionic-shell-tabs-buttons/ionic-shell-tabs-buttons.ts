@@ -1,6 +1,7 @@
 import { Component, Input, HostBinding, ElementRef, ViewChild, ContentChildren, QueryList, ViewChildren } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
 import { SegmentButton, Segment, Button } from 'ionic-angular';
+import { HostListener } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'ionic-shell-tabs-buttons',
@@ -46,10 +47,17 @@ export class IonicShellTabsButtonsComponent {
     this._ionicShellProvider.tabsLabels.subscribe( tabsLabel => {
       this.tabsLabel = tabsLabel;
     });
-
-    this._ionicShellProvider.ionicShellTabsComponent.ionSlideDidChange.subscribe( () =>{
+    // ionSlideDidChange
+    this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe( () =>{
       this.manageTabs(this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex());
+      this.indicator.nativeElement.style.transition = 'transform 0.3s';
+      this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
       this.updateIndicator();
+    });
+
+    this._ionicShellProvider.ionicShellTabsComponent.ionSlideDrag.subscribe( data => {
+      console.log(data);
+      this.touchMove(data);
     });
   }
 
@@ -69,15 +77,19 @@ export class IonicShellTabsButtonsComponent {
 
     });
 
+    setTimeout(() => {
+      this.ngDoCheck2();
+      this.updateIndicator();
+      this.indicator.nativeElement.style.transition = 'transform 0.3s';
+      this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
+    }, 0);
+
     // console.log(this.button);
 
   }
 
-  ngDoCheck(){
-    if( this.button && !this._tabs.length ){
-      // console.log(this.button);
-      console.log( this.button.toArray() );
-      // this._tabs = this.button.toArray();
+  ngDoCheck2(){
+    // if( this.button && !this._tabs.length ){
       this.button.toArray().forEach((button, i) => {
         const native = button.getNativeElement();
 
@@ -107,7 +119,7 @@ export class IonicShellTabsButtonsComponent {
         this._tabs.push(tab);
 
       });
-    }
+    //}
   }
 
   changeTab(index: number, button) {
@@ -179,8 +191,59 @@ export class IonicShellTabsButtonsComponent {
   }
 
   updateIndicator(){
-    this.indicatorHelper.nativeElement.style.transform = "scaleX(" + this._tabs[this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex()].width + ")";
-    this.indicator.nativeElement.style.transform  = "translateX("+ this._tabs[this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex()].marginLeft +"px)";
+
+    const tab = this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex() || 0;
+
+    this.indicatorHelper.nativeElement.style.transform = "translateX(" + this._tabs[tab].marginLeft + "px)";
+    this.indicator.nativeElement.style.transform  = "scaleX("+ this._tabs[tab].width  +")";
+  }
+
+  touchMove(event){
+
+    this.indicator.nativeElement.style.transition = '';
+    this.indicatorHelper.nativeElement.style.transition = '';
+
+    // touch.endPosition = event.touches[0].clientX;
+    /*currentX
+    currentY
+    diff
+    startX
+    startY*/
+
+    // if ( !leftLimit() && (event.touches[0].clientX > touch.startPosition + touch.offset) ) {
+    const index = this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex();
+
+    event = event._touches;
+
+    /*console.log(event.currentX);
+    console.log(event.startX);
+    console.log( event.currentX < event.startX );*/
+
+    if ( !(index === 0) && (event.currentX > event.startX ) ) {
+
+      // event.preventDefault();
+      // state.sliding = true;
+
+      // var nexTab = dom.tabsArray[ tabsViews.currentTab + -1 ];
+
+      // touch.move = event.touches[0].clientX - touch.offset - touch.startPosition;
+      // dom.tabsMove.style.transform = "translateX(" + Math.floor(tabsData[ tabsViews.currentTab ].translatePX + touch.move) + "px)";
+
+      this.indicatorHelper.nativeElement.style.transform = "translateX("+ Math.floor(this._tabs[index].marginLeft - ( (event.currentX - event.startX) * this._tabs[ index ].previousTabScreenRatio) )+"px)";
+
+    // } else if ( !rightLimit() && ( event.touches[0].clientX < touch.startPosition - touch.offset ) ) {
+    } else if ( !(index === this._tabs.length-1) && ( event.currentX < event.startX ) ) {
+
+      // event.preventDefault();
+      // state.sliding = true;
+
+      // var nexTab = dom.tabsArray[ tabsViews.currentTab + 1 ];
+
+      // touch.move = touch.startPosition - event.touches[0].clientX - touch.offset;
+      // dom.tabsMove.style.transform = "translateX(" + Math.floor(tabsData[ tabsViews.currentTab ].translatePX - touch.move) + "px)";
+      this.indicatorHelper.nativeElement.style.transform = "translateX(" + Math.floor( this._tabs[index].marginLeft + ( ( event.startX - event.currentX ) * this._tabs[ index+1 ].previousTabScreenRatio ) ) +"px)";
+    }
+
   }
 
 }
