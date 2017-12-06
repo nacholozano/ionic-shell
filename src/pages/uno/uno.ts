@@ -1,4 +1,4 @@
-import { Component, HostListener, HostBinding, ElementRef } from '@angular/core';
+import { Component, HostListener, HostBinding, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { IonicShellProvider } from '../../app/ionic-shell/providers/ionic-shell';
 
@@ -17,17 +17,19 @@ export class UnoPage {
 
   num;
 
-  @HostBinding('style.paddingTop')
+  /*@HostBinding('style.paddingTop')
   private _paddingTop: string;
 
   @HostBinding('style.paddingBottom')
-  private _paddingBottom: string;
+  private _paddingBottom: string;*/
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private IonicShellProvider:IonicShellProvider,
-    private _el: ElementRef) {
+    private _el: ElementRef,
+    private _changeDetectorRef: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit(){
@@ -52,12 +54,14 @@ export class UnoPage {
     this.IonicShellProvider.num++;
 
     this.IonicShellProvider.buttonsBottoms.subscribe( height => {
-      this._paddingBottom = height + 'px';
+      // this._paddingBottom = height + 'px';
+      this._el.nativeElement.style.paddingTop = height + 'px';
     });
 
     this.IonicShellProvider.buttonsHeight.subscribe( height => {
-      this._paddingTop = height - 5 + 'px';
+      // this._paddingTop = height - 5 + 'px';
       // 15
+      this._el.nativeElement.style.paddingTop = height - 5 + 'px';
     });
   }
 
