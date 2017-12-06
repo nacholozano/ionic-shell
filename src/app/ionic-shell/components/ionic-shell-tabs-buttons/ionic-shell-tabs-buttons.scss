@@ -98,3 +98,23 @@ ionic-shell-tabs-buttons {
     }
   }
 }
+
+.tab-indicator {
+  height: 0.5em;
+
+  .indicator-helper {
+    transform-origin: 0 0;
+    width: 1px;
+    height: 100%;
+    display: inline-block;
+
+    .indicator {
+      height: 100%;
+      width: 1px;
+      background-color: green;
+      display: inline-block;
+      will-change: transform;
+    }
+
+  }
+}

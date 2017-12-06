@@ -57,6 +57,8 @@ export class IonicShellTabsComponent extends Slides {
   ngOnInit(){
     this._wrapper = (this.getNativeElement().children[0].querySelector('.' + 'swiper-wrapper'));
     this._ionicShellProvider.ionicShellTabsComponent = this;
+    // this.freeModeMomentumBounce = false;
+    this.pager = false;
   }
 
   ngAfterViewInit() {
@@ -76,15 +78,15 @@ export class IonicShellTabsComponent extends Slides {
     this._tabs.push(tab);
   }
 
-  public changeTab(index: number) {
+  /*public changeTab(index: number) {
     this.transform = 'translateX(' + (index * -100) + '%)';
-    /*this.tabs.toArray().forEach( (tab, i) => {
-      if ( i  === index ) {
-        tab.active = true;
-      }else {
-        tab.active = false;
-      }
-    });*/
-  }
+    //this.tabs.toArray().forEach( (tab, i) => {
+      //if ( i  === index ) {
+        //tab.active = true;
+      //}else {
+        //tab.active = false;
+      //}
+    //});
+  }*/
 
 }

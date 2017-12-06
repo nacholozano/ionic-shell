@@ -1,6 +1,16 @@
 <div #buttons>
-  <button ion-button *ngFor="let tabLabel of tabsLabel; let index = index" (click)="_ionicShellProvider.ionicShellTabsComponent.changeTab(index)">
+  <button ion-button #button *ngFor="let tabLabel of tabsLabel; let index = index" (click)="changeTab(index)">
     <ion-icon name="camera"></ion-icon>
     <div>{{ tabLabel }}</div>
   </button>
+  <div class="tab-indicator">
+    <div class="indicator-helper">
+      <div class="indicator"></div>
+    </div>
+  </div>
+</div>
+<div class="tab-indicator">
+  <div class="indicator-helper">
+    <div class="indicator"></div>
+  </div>
 </div>
