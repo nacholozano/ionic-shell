@@ -1,18 +1,23 @@
 import { Component, ContentChildren, QueryList,
   forwardRef, Optional, ElementRef,
-  Renderer2,  } from '@angular/core';
+  Renderer2, NgZone, Renderer, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IonicShellTabComponent } from '../ionic-shell-tab/ionic-shell-tab';
 import { IonicShellProvider } from '../../providers/ionic-shell';
 
 import { RootNode, DomController, DeepLinker,
   ViewController, NavController, App,
-  NavControllerBase } from 'ionic-angular';
+  NavControllerBase, Slides } from 'ionic-angular';
+
+  import { Config } from 'ionic-angular';
+  import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'ionic-shell-tabs',
-  templateUrl: 'ionic-shell-tabs.html'
+  templateUrl: 'ionic-shell-tabs.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
-export class IonicShellTabsComponent {
+export class IonicShellTabsComponent extends Slides {
 
   @ContentChildren(IonicShellTabComponent) tabs: QueryList<IonicShellTabComponent>;
 
@@ -30,12 +35,27 @@ export class IonicShellTabsComponent {
     private rnd: Renderer2,
     // private superTabsCtrl: SuperTabsController,
     private linker: DeepLinker,
-    private domCtrl: DomController
+    private domCtrl: DomController,
+
+    config: Config,
+    private _plat: Platform,
+    zone: NgZone,
+    elementRef: ElementRef,
+    renderer: Renderer,
   ) {
+    super(
+      config,
+      _plat,
+      zone,
+      viewCtrl,
+      el,
+      renderer
+    );
     this.parent = <NavControllerBase>parent;
   }
 
   ngOnInit(){
+    this._wrapper = (this.getNativeElement().children[0].querySelector('.' + 'swiper-wrapper'));
     this._ionicShellProvider.ionicShellTabsComponent = this;
   }
 

@@ -1,7 +1,7 @@
 import { Component, Input, HostBinding,
   ErrorHandler, NgZone, ElementRef,
   Renderer, ComponentFactoryResolver, ChangeDetectorRef, Optional,
-  forwardRef, Inject, ViewContainerRef, ViewChild } from '@angular/core';
+  forwardRef, Inject, ViewContainerRef, ViewChild, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 import { NavControllerBase, App, Config,
   Platform, DomController, DeepLinker, GestureController,
@@ -14,7 +14,9 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ionic-shell-tab',
-  templateUrl: 'ionic-shell-tab.html'
+  templateUrl: 'ionic-shell-tab.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class IonicShellTabComponent extends NavControllerBase {
 
@@ -57,7 +59,8 @@ export class IonicShellTabComponent extends NavControllerBase {
   constructor(
     private _ionicShellProvider: IonicShellProvider,
     //@Inject(forwardRef(() => ParentComponent)) private _parent:ParentComponent
-    @Inject(forwardRef(() => IonicShellTabsComponent)) parent: IonicShellTabsComponent,
+    @Inject(forwardRef(() => IonicShellTabsComponent))
+    parent: IonicShellTabsComponent,
     // parent: IonicShellTabsComponent,
     app: App,
     config: Config,
@@ -71,9 +74,12 @@ export class IonicShellTabComponent extends NavControllerBase {
     transCtrl: TransitionController,
     @Optional() private linker: DeepLinker,
     private _dom: DomController,
-    errHandler: ErrorHandler
+    errHandler: ErrorHandler,
+    // private _slides: IonicShellTabsComponent
   ) {
     super(parent, app, config, plt, elementRef, zone, renderer, cfr, gestureCtrl, transCtrl, linker, _dom, errHandler);
+    renderer.setElementClass(elementRef.nativeElement, 'swiper-slide', true);
+    parent.update(10);
     // console.log('Hello IonicShellTabComponent Component');
   }
 
@@ -108,6 +114,10 @@ export class IonicShellTabComponent extends NavControllerBase {
 
   goToRoot(opts: NavOptions): Promise<any> | any {
     return this.setRoot(this.root, {}, opts, null);
+  }
+
+  ngOnDestroy() {
+    this.parent.update(10);
   }
 
 }
