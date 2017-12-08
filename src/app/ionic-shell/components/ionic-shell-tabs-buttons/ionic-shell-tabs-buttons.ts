@@ -11,6 +11,7 @@ export class IonicShellTabsButtonsComponent extends Ion {
 
   public tabsLabel: string[];
   private _tabs = [];
+  private _indicatorTransition = 'transform 0.3s';
 
   private tabsScroll = {
     speed: 10, // Scroll speed if tab is not fully visible
@@ -23,15 +24,6 @@ export class IonicShellTabsButtonsComponent extends Ion {
   @ViewChildren('button') button: QueryList<any>;
   @ViewChild('indicatorHelper') indicatorHelper;
   @ViewChild('indicator') indicator;
-
-  @HostBinding('style.position')
-  private _position: string;
-
-  @HostBinding('style.bottom')
-  private _bottom: number;
-
-  @HostBinding('style.zIndex')
-  private _zindex: number;
 
   constructor(
     public _ionicShellProvider: IonicShellProvider,
@@ -51,21 +43,20 @@ export class IonicShellTabsButtonsComponent extends Ion {
 
   ngAfterViewInit() {
     if ( this._ionicShellProvider.bottomTabs ) {
-      this._position = 'absolute';
-      this._bottom = 0;
-      this._zindex = 70;
+      this.getNativeElement().classList.add('bottom');
     }
+
     setTimeout(() => {
       this.ngDoCheck2();
       this.updateIndicator();
-      this.indicator.nativeElement.style.transition = 'transform 0.3s';
-      this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
+      this.indicator.nativeElement.style.transition = this._indicatorTransition;
+      this.indicatorHelper.nativeElement.style.transition = this._indicatorTransition;
     }, 0);
 
     this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe( () =>{
       this.manageTabs(this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex());
-      this.indicator.nativeElement.style.transition = 'transform 0.3s';
-      this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
+      this.indicator.nativeElement.style.transition = this._indicatorTransition;
+      this.indicatorHelper.nativeElement.style.transition = this._indicatorTransition;
       this.updateIndicator();
     });
 
@@ -108,7 +99,6 @@ export class IonicShellTabsButtonsComponent extends Ion {
 
   changeTab(index: number, button) {
     this._ionicShellProvider.ionicShellTabsComponent.slideTo(index);
-    this.manageTabs(index);
   }
 
   trimDecimals(number, decimals?){
@@ -121,7 +111,7 @@ export class IonicShellTabsButtonsComponent extends Ion {
   }
 
   tabHideRigthPart( numTab ){
-    return this._el.nativeElement.clientWidth+this._el.nativeElement.scrollLeft < this._tabs[ numTab ].right
+    return this._el.nativeElement.clientWidth + this._el.nativeElement.scrollLeft < this._tabs[ numTab ].right
 
   }
 

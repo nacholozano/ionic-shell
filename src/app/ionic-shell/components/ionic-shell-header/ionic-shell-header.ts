@@ -14,9 +14,6 @@ export class IonicShellHeaderComponent {
   @ViewChild(Header) ionHeader: Header;
   @ViewChild(IonicShellTabsButtonsComponent) ionicShellTabsButtonsComponent: IonicShellTabsButtonsComponent;
 
-  @HostBinding('style.transform')
-  transform;
-
   @Input() private text: string;
   public bottomButtons: boolean;
 
@@ -30,13 +27,17 @@ export class IonicShellHeaderComponent {
 
     this._ionicShellProvider.hideHeader.subscribe( hide =>{
       if( hide ) {
-        this.transform = 'translateY(-' + this.ionHeader.getNativeElement().clientHeight + 'px)';
+        this.setTranslateY(-this.ionHeader.getNativeElement().clientHeight);
       }else{
-        this.transform = 'translateY(0)';
+        this.setTranslateY(0);
       }
     });
 
     this._ionicShellProvider.headerComponentRef = this;
+  }
+
+  public setTranslateY(transform: number){
+    this._el.nativeElement.style.transform = 'translateY(' + transform + 'px)';
   }
 
 }

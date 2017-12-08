@@ -24,8 +24,6 @@ export class IonicShellTabsComponent extends Slides {
   private _tabs: IonicShellTabComponent[] = [];
   parent: NavControllerBase;
 
-  transform: string;
-
   constructor(
     private _ionicShellProvider: IonicShellProvider,
     @Optional() parent: NavController,

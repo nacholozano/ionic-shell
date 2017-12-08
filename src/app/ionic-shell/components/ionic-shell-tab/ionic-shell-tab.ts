@@ -23,12 +23,6 @@ export class IonicShellTabComponent extends NavControllerBase {
   @Input() public text: string;
   @Input() root: any;
 
-  @HostBinding('style.paddingTop')
-  private _paddingTop: string;
-
-  @HostBinding('style.paddingBottom')
-  private _paddingBottom: string;
-
   /**
    * Indicates whether the tab has been loaded
    * @type {boolean}

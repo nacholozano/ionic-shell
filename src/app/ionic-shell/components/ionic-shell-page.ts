@@ -33,7 +33,7 @@ export class IonicShellPage {
         h = c;
       });
       if ( this._el.nativeElement.scrollTop < h ) {
-        this.IonicShellProvider.headerComponentRef.transform = 'translateY(0)';
+        this.IonicShellProvider.headerComponentRef.setTranslateY(0);
       }
     });
   }

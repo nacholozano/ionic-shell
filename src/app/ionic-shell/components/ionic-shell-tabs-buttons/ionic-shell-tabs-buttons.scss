@@ -2,33 +2,24 @@ ionic-shell-tabs-buttons {
   display: block;
   width: 100%;
 
-  /*.button-md{
-    margin: 0;
-    .button-inner{
-      flex-direction: column;
-    }
-  }*/
+  &.bottom{
+    position: absolute;
+    bottom: 0;
+    z-index: 70;
+  }
 
   .buttons-container{
     display: flex;
     button{
       flex-grow: 1;
       background-color: transparent;
-      padding: 0.5em;
+      padding: 1.2em;
     }
   }
 
-  $green: #4CAF50;
   $tab-font-color: #3a3a3a;
   $tab-font-weight: 600;
-  $active-tab-color: $green;
   $inactive-tab-color: rgba(0, 0, 0, 0.4);
-  $tab-indicator-height: 0.2rem;
-  $base-font-size: 1rem;
-  $tab-link-space: $base-font-size;
-  $loader-width: 0.3em;
-  $loader-dimensions: 4em;
-  $reloader-icon-size: 4em;
 
   display: block;
   overflow-x: auto;
@@ -36,41 +27,7 @@ ionic-shell-tabs-buttons {
   font-size: 0;
   color: $tab-font-color;
   font-weight: $tab-font-weight;
-  /* text-transform: uppercase;
-  white-space: nowrap; */
   color: $inactive-tab-color;
-
-  /*.tabs-link {
-    display: block;
-    overflow-x: auto;
-    background-color: white;
-    font-size: 0;
-    color: $tab-font-color;
-    font-weight: $tab-font-weight;
-    text-transform: uppercase;
-    white-space: nowrap;
-    color: $inactive-tab-color;
-
-    .tab-indicator {
-      height: $tab-indicator-height;
-
-      .indicator-helper {
-        transform-origin: 0 0;
-        width: 1px;
-        height: 100%;
-        display: inline-block;
-
-        .indicator {
-          height: 100%;
-          width: 1px;
-          background-color: $green;
-          display: inline-block;
-          will-change: transform;
-        }
-
-      }
-    }
-  }*/
 }
 
 .tab-indicator {

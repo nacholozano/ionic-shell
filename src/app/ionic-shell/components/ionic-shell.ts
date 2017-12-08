@@ -33,15 +33,6 @@ export class IonicShellComponent {
       this._ionicShellProvider.ionicShellTabsComponent.lockSwipes(false);
     });
 
-    /* this._ionicShellProvider.ionicShellTabsComponent.ionSlideTap.subscribe( () => {
-      this._lockFirstAndLastSlides();
-    }); */
-
-    /* this._lockFirstAndLastSlides();
-    this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe( () => {
-      this._lockFirstAndLastSlides();
-    }); */
-
     setTimeout(() => {
       this._ionicShellProvider.headerTitleRefHeightSubject.next( this.header.ionHeader.getNativeElement().clientHeight );
 
@@ -56,14 +47,5 @@ export class IonicShellComponent {
       }
     });
   }
-
-  /* private _lockFirstAndLastSlides(){
-    if ( this._ionicShellProvider.ionicShellTabsComponent.isBeginning() ) {
-      this._ionicShellProvider.ionicShellTabsComponent.lockSwipeToPrev(true);
-    }
-    if ( this._ionicShellProvider.ionicShellTabsComponent.isBeginning() ) {
-      this._ionicShellProvider.ionicShellTabsComponent.lockSwipeToNext(true);
-    }
-  } */
 
 }

@@ -1,6 +1,6 @@
-<div id="tabs-move" class="tabs-move-container swiper-container">
-  <div class="tabs-move swiper-wrapper" [ngStyle]="{'transform': transform}" (transitionend)="updateIndicator()">
+<div class="swiper-container">
+  <div class="swiper-wrapper" (transitionend)="updateIndicator()">
     <ng-content></ng-content>
   </div>
-  <div [class.hide]="!pager" class="swiper-pagination"></div>
+  <div class="hide swiper-pagination"></div>
 </div>
