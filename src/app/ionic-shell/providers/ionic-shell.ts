@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
+import { IonicShellHeaderComponent } from '../components/ionic-shell-header/ionic-shell-header';
 
 @Injectable()
 export class IonicShellProvider {
 
   public tabsLabels: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-  public bottomTabs: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public bottomTabs: boolean;
 
   public ionicShellTabsComponent;
 
@@ -13,14 +14,11 @@ export class IonicShellProvider {
   public headerScroll = 0;
   public distanceToToggleHeader = 30;
 
-  num = 0;
-  headerref;
+  pagesTempCounterID = 0;
 
-  // tabsButtonsRef;
   tabsButtonsRefHeightSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
-  // headerTitleRef;
   headerTitleRefHeightSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  headerComponentRef: IonicShellHeaderComponent;
 
   constructor() {
   }

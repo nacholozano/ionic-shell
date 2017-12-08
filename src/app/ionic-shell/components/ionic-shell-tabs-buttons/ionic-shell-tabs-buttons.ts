@@ -20,7 +20,8 @@ export class IonicShellTabsButtonsComponent extends Ion {
     equalWdith: null
   };
 
-  @ViewChildren(Button) button: QueryList<Button>;
+  //@ViewChildren(Button) button: QueryList<Button>;
+  @ViewChildren('button') button: QueryList<any>;
 
   @ViewChild('indicatorHelper') indicatorHelper;
   @ViewChild('indicator') indicator;
@@ -68,20 +69,13 @@ export class IonicShellTabsButtonsComponent extends Ion {
 
   ngAfterViewInit() {
 
-    this._ionicShellProvider.bottomTabs.subscribe( bottom => {
-      if ( bottom ) {
-        this._position = 'absolute';
-        this._bottom = 0;
-        this._zindex = 150;
-
-      }
-      /*else{
-        this._ionicShellProvider.headerHeight.subscribe( height => {
-          this._headerHeight = height + 'px';
-        });
-      }*/
-
-    });
+    /* this._ionicShellProvider.bottomTabs.subscribe( bottom => { */
+    if ( this._ionicShellProvider.bottomTabs ) {
+      this._position = 'absolute';
+      this._bottom = 0;
+      this._zindex = 150;
+    }
+    /* }); */
 
     setTimeout(() => {
       this.ngDoCheck2();
@@ -94,7 +88,8 @@ export class IonicShellTabsButtonsComponent extends Ion {
 
   ngDoCheck2(){
     this.button.toArray().forEach((button, i) => {
-      const native = button.getNativeElement();
+      //const native = button.getNativeElement();
+      const native = button.nativeElement;
 
       var tab: any = {
         id: i,

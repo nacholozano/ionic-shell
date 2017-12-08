@@ -2,12 +2,6 @@ import { Component, HostListener, HostBinding, ElementRef, ChangeDetectorRef } f
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { IonicShellProvider } from '../../app/ionic-shell/providers/ionic-shell';
 
-/**
- * Generated class for the UnoPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-uno',
@@ -31,27 +25,20 @@ export class UnoPage {
       if ( data.realIndex !== this.num ){ return; }
       console.log(data);
       let h;
-      this.IonicShellProvider.buttonsHeight.subscribe(c => {
+      this.IonicShellProvider.tabsButtonsRefHeightSubject.subscribe(c => {
         h = c;
       });
       if ( this._el.nativeElement.scrollTop < h ) {
-        this.IonicShellProvider.headerref.transform = 'translateY(0)';
+        this.IonicShellProvider.headerComponentRef.transform = 'translateY(0)';
       }
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UnoPage', this.IonicShellProvider.num);
-    this.num = this.IonicShellProvider.num;
-    this.IonicShellProvider.num++;
+    console.log('ionViewDidLoad UnoPage', this.IonicShellProvider.pagesTempCounterID);
+    this.num = this.IonicShellProvider.pagesTempCounterID;
+    this.IonicShellProvider.pagesTempCounterID++;
 
-    /* this.IonicShellProvider.buttonsBottoms.subscribe( height => {
-      this._el.nativeElement.style.paddingTop = height + 'px';
-    });
-
-    this.IonicShellProvider.buttonsHeight.subscribe( height => {
-      this._el.nativeElement.style.paddingTop = height - 5 + 'px';
-    }); */
     let v = 0;
     this.IonicShellProvider.headerTitleRefHeightSubject.subscribe( height => {
       this._el.nativeElement.style.paddingTop = height + 'px';
@@ -59,13 +46,11 @@ export class UnoPage {
     });
 
     this.IonicShellProvider.tabsButtonsRefHeightSubject.subscribe( height => {
-      this.IonicShellProvider.bottomTabs.subscribe( bottom => {
-        if ( !bottom ) {
-          this._el.nativeElement.style.paddingTop = height + v + 'px';
-        }else {
-          this._el.nativeElement.style.paddingBottom = height + 'px';
-        }
-      });
+      if ( !this.IonicShellProvider.bottomTabs ) {
+        this._el.nativeElement.style.paddingTop = height + v + 'px';
+      }else {
+        this._el.nativeElement.style.paddingBottom = height + 'px';
+      }
     });
   }
 

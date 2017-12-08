@@ -1,15 +1,9 @@
 <ion-header>
   <ion-navbar>
 
-    <!--<ion-menu [content]="mycontent">
-      <ion-content>
-        <ion-list>
-          <p>some menu content, could be list items</p>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
-
-    <div #mycontent>prueba menu</div>-->
+    <button ion-button menuToggle *ngIf="hasMenu">
+      <ion-icon name="menu"></ion-icon>
+    </button>
 
     <ion-title>
       {{ text }}
@@ -18,8 +12,8 @@
     <ion-buttons end>
       <ng-content></ng-content>
     </ion-buttons>
-  </ion-navbar>
 
+  </ion-navbar>
 </ion-header>
 
 <ionic-shell-tabs-buttons *ngIf="!bottomButtons"></ionic-shell-tabs-buttons>
