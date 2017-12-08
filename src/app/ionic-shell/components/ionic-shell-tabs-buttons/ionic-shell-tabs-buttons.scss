@@ -8,9 +8,14 @@ ionic-shell-tabs-buttons {
       flex-direction: column;
     }
   }*/
-  button{
-    background-color: transparent;
-    padding: 0.5em;
+
+  .buttons-container{
+    display: flex;
+    button{
+      flex-grow: 1;
+      background-color: transparent;
+      padding: 0.5em;
+    }
   }
 
   $green: #4CAF50;
@@ -31,8 +36,8 @@ ionic-shell-tabs-buttons {
   font-size: 0;
   color: $tab-font-color;
   font-weight: $tab-font-weight;
-  text-transform: uppercase;
-  white-space: nowrap;
+  /* text-transform: uppercase;
+  white-space: nowrap; */
   color: $inactive-tab-color;
 
   /*.tabs-link {
