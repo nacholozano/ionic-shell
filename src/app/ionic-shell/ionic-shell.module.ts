@@ -15,6 +15,7 @@ import { IonicShellTabComponent } from './components/ionic-shell-tab/ionic-shell
 import { IonicShellTabsButtonsComponent } from './components/ionic-shell-tabs-buttons/ionic-shell-tabs-buttons';
 
 import { IonicShellProvider } from './providers/ionic-shell';
+import { IonicShellPage } from './components/ionic-shell-page';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { IonicShellProvider } from './providers/ionic-shell';
     IonicShellHeaderComponent,
     IonicShellTabsComponent,
     IonicShellTabComponent,
-    IonicShellTabsButtonsComponent
+    IonicShellTabsButtonsComponent,
+    IonicShellPage
     /*MyApp,
     HomePage*/
   ],
