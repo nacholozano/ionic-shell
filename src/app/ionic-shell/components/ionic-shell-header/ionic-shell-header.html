@@ -1,35 +1,31 @@
-<div #headerContainer class="tabs-header-container" [ngStyle]="{transform: transform}">
+<ion-header>
+  <ion-navbar>
 
-  <ion-header #ionHeader>
-    <ion-navbar>
+    <!--<ion-menu [content]="mycontent">
+      <ion-content>
+        <ion-list>
+          <p>some menu content, could be list items</p>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
 
-      <!--<ion-menu [content]="mycontent">
-        <ion-content>
-          <ion-list>
-            <p>some menu content, could be list items</p>
-          </ion-list>
-        </ion-content>
-      </ion-menu>
+    <div #mycontent>prueba menu</div>-->
 
-      <div #mycontent>prueba menu</div>-->
+    <ion-title>
+      {{ text }}
+    </ion-title>
 
-      <ion-title>
-        {{ text }}
-      </ion-title>
+    <ion-buttons end>
+      <ng-content></ng-content>
+    </ion-buttons>
+  </ion-navbar>
 
-      <ion-buttons end>
-        <ng-content></ng-content>
-      </ion-buttons>
-    </ion-navbar>
+</ion-header>
 
-  </ion-header>
+<ionic-shell-tabs-buttons *ngIf="!bottomButtons"></ionic-shell-tabs-buttons>
 
-  <ionic-shell-tabs-buttons #buttons *ngIf="!bottomButtons"></ionic-shell-tabs-buttons>
-
-  <span class="tab-reloader-container" aria-hidden="true">
-    <span class="tab-reloader">
-      <span class="tab-reloader-icon"></span>
-    </span>
+<!-- <span class="tab-reloader-container" aria-hidden="true">
+  <span class="tab-reloader">
+    <span class="tab-reloader-icon"></span>
   </span>
-
-</div>
+</span> -->

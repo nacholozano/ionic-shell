@@ -6,15 +6,6 @@ export class IonicShellProvider {
 
   public tabsLabels: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
   public bottomTabs: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  /*public headerHeight: BehaviorSubject<number> = new BehaviorSubject<number>(0);*/
-  public buttonsHeight: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
-  public _headerRef;
-  public _buttonsRef;
-
-  public medioHeader: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
-  public buttonsBottoms: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   public ionicShellTabsComponent;
 
@@ -24,6 +15,12 @@ export class IonicShellProvider {
 
   num = 0;
   headerref;
+
+  // tabsButtonsRef;
+  tabsButtonsRefHeightSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
+  // headerTitleRef;
+  headerTitleRefHeightSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor() {
   }

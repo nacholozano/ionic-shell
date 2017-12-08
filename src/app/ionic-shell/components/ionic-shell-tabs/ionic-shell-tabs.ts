@@ -33,7 +33,6 @@ export class IonicShellTabsComponent extends Slides {
     private _app: App,
     private el: ElementRef,
     private rnd: Renderer2,
-    // private superTabsCtrl: SuperTabsController,
     private linker: DeepLinker,
     private domCtrl: DomController,
 
@@ -57,7 +56,6 @@ export class IonicShellTabsComponent extends Slides {
   ngOnInit(){
     this._wrapper = (this.getNativeElement().children[0].querySelector('.' + 'swiper-wrapper'));
     this._ionicShellProvider.ionicShellTabsComponent = this;
-    // this.freeModeMomentumBounce = false;
     this.pager = false;
   }
 

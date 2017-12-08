@@ -1,5 +1,7 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, HostBinding } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
+import { Header } from 'ionic-angular';
+import { IonicShellTabsButtonsComponent } from '../ionic-shell-tabs-buttons/ionic-shell-tabs-buttons';
 
 @Component({
   selector: 'ionic-shell-header',
@@ -7,18 +9,19 @@ import { IonicShellProvider } from '../../providers/ionic-shell';
 })
 export class IonicShellHeaderComponent {
 
-  @ViewChild('ionHeader') ionHeader;
-  @ViewChild('headerContainer') headerContainer;
+  @ViewChild(Header) ionHeader: Header;
+  @ViewChild(IonicShellTabsButtonsComponent) ionicShellTabsButtonsComponent: IonicShellTabsButtonsComponent;
+
+  @HostBinding('style.transform')
+  private _transform;
 
   @Input() private text: string;
   public bottomButtons: boolean;
 
-  transform;
-
   constructor(
-    private _ionicShellProvider: IonicShellProvider
-  ) {
-  }
+    private _ionicShellProvider: IonicShellProvider,
+    private _el: ElementRef
+  ) { }
 
   ngOnInit() {
     this._ionicShellProvider.bottomTabs.subscribe( bottom => {
@@ -27,28 +30,20 @@ export class IonicShellHeaderComponent {
 
     this._ionicShellProvider.hideHeader.subscribe( hide =>{
       if( hide ) {
-        // this._ionicShellProvider.
-        this._ionicShellProvider.medioHeader.subscribe( height => {
-          this.transform = 'translateY(-' + height + 'px)';
-        });
+        this._transform = 'translateY(-' + this.ionHeader.getNativeElement().clientHeight + 'px)';
       }else{
-        this.transform = 'translateY(0)';
+        this._transform = 'translateY(0)';
       }
     });
 
-    this._ionicShellProvider.headerref = this;
   }
 
   ngAfterViewInit() {
-    this._ionicShellProvider.medioHeader.next( this.ionHeader.nativeElement.clientHeight );
-    this._ionicShellProvider._headerRef = this.headerContainer.nativeElement;
-  }
 
-  ngDoCheck(){
-    /*if( !this._ionicShellProvider.alturaHeader && this.headerContainer.nativeElement.clientHeight && this._ionicShellProvider.buttonsHeight ){
-      this._ionicShellProvider.alturaHeader = true;
-      this._ionicShellProvider.buttonsHeight.next( this.headerContainer.nativeElement.clientHeight );
-    }*/
+    /*this._ionicShellProvider.tabsButtonsRef = this.ionicShellTabsButtonsComponent
+      ? this.ionicShellTabsButtonsComponent.getNativeElement()
+      : null;
+    this._ionicShellProvider.headerTitleRef = this.ionHeader.getNativeElement();*/
   }
 
 }

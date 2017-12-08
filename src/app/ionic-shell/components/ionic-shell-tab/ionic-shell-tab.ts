@@ -36,24 +36,10 @@ export class IonicShellTabComponent extends NavControllerBase {
   private loaded: boolean = false;
 
   @ViewChild('viewport') v2;
-  /*set _vp2(val) {
-    if ( val.nativeElement ) {
-      Observable.fromEvent( val.nativeElement, 'scroll' )
-      .subscribe( () => {
-        console.log('ayer');
-      });
-    }
-    // console.log( val );
-  }*/
 
   @ViewChild('viewport', {read: ViewContainerRef})
   set _vp(val: ViewContainerRef) {
     this.setViewport(val);
-
-    /*Observable.fromEvent( val, 'scroll' )
-    .subscribe( () => {
-      console.log('ayer');
-    });*/
   }
 
   constructor(
@@ -75,27 +61,14 @@ export class IonicShellTabComponent extends NavControllerBase {
     @Optional() private linker: DeepLinker,
     private _dom: DomController,
     errHandler: ErrorHandler,
-    // private _slides: IonicShellTabsComponent
   ) {
     super(parent, app, config, plt, elementRef, zone, renderer, cfr, gestureCtrl, transCtrl, linker, _dom, errHandler);
     renderer.setElementClass(elementRef.nativeElement, 'swiper-slide', true);
     parent.update(10);
-    // console.log('Hello IonicShellTabComponent Component');
   }
 
   ngAfterViewInit() {
     this.load(true);
-
-    /*this._ionicShellProvider.buttonsHeight.subscribe( height => {
-      this._paddingTop = height + 15 + 'px';
-      const c = 5 +7 ;
-    });
-
-    this._ionicShellProvider.buttonsBottoms.subscribe( height => {
-      this._paddingBottom = height + 15 + 'px';
-    });*/
-
-
   }
 
   ngOnInit() {

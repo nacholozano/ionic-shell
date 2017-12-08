@@ -1,13 +1,13 @@
-import { Component, Input, HostBinding, ElementRef, ViewChild, ContentChildren, QueryList, ViewChildren } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, ViewChild, ContentChildren, QueryList, ViewChildren, Renderer } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
-import { SegmentButton, Segment, Button } from 'ionic-angular';
+import { SegmentButton, Segment, Button, Ion, Config } from 'ionic-angular';
 import { HostListener } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'ionic-shell-tabs-buttons',
   templateUrl: 'ionic-shell-tabs-buttons.html'
 })
-export class IonicShellTabsButtonsComponent {
+export class IonicShellTabsButtonsComponent extends Ion {
 
   public tabsLabel: string[];
   private _tabs = [];
@@ -20,14 +20,10 @@ export class IonicShellTabsButtonsComponent {
     equalWdith: null
   };
 
-  @ViewChild('buttons') buttons;
-  @ViewChildren('button') button: QueryList<any>;
+  @ViewChildren(Button) button: QueryList<Button>;
 
   @ViewChild('indicatorHelper') indicatorHelper;
   @ViewChild('indicator') indicator;
-
-  /*@HostBinding('style.paddingTop')
-  private _headerHeight: string;*/
 
   @HostBinding('style.position')
   private _position: string;
@@ -35,12 +31,21 @@ export class IonicShellTabsButtonsComponent {
   @HostBinding('style.bottom')
   private _bottom: number;
 
+  @HostBinding('style.zIndex')
+  private _zindex: number;
+
   icons;
 
   constructor(
     public _ionicShellProvider: IonicShellProvider,
-    private _el: ElementRef
+    private _el: ElementRef,
+    _config: Config,
+    private _rendered: Renderer
   ) {
+    super(_config, _el, _rendered );
+    /*this._config = config;
+    this._elementRef = elementRef;
+    this._renderer = renderer;*/
   }
 
   ngOnInit() {
@@ -67,7 +72,8 @@ export class IonicShellTabsButtonsComponent {
       if ( bottom ) {
         this._position = 'absolute';
         this._bottom = 0;
-        this._ionicShellProvider._buttonsRef = this.buttons.nativeElement;
+        this._zindex = 150;
+
       }
       /*else{
         this._ionicShellProvider.headerHeight.subscribe( height => {
@@ -84,42 +90,38 @@ export class IonicShellTabsButtonsComponent {
       this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
     }, 0);
 
-    // console.log(this.button);
-
   }
 
   ngDoCheck2(){
-    // if( this.button && !this._tabs.length ){
-      this.button.toArray().forEach((button, i) => {
-        const native = button.getNativeElement();
+    this.button.toArray().forEach((button, i) => {
+      const native = button.getNativeElement();
 
-        var tab: any = {
-          id: i,
-          width: this.trimDecimals(native.getBoundingClientRect().width),
-          translate: i * -100,
-        };
-        tab.center = this.trimDecimals(tab.width/2);
+      var tab: any = {
+        id: i,
+        width: this.trimDecimals(native.getBoundingClientRect().width),
+        translate: i * -100,
+      };
+      tab.center = this.trimDecimals(tab.width/2);
 
-        if( i ){
-          tab.left = this._tabs[i-1].right;
-          tab.right = this.trimDecimals(tab.left + tab.width);
-          tab.translatePX = -( document.body.clientWidth + Math.abs(this._tabs[ i - 1 ].translatePX) );
-        }else{
-          tab.left = 0;
-          tab.right = tab.width;
-          tab.translatePX = 0;
-        }
+      if( i ){
+        tab.left = this._tabs[i-1].right;
+        tab.right = this.trimDecimals(tab.left + tab.width);
+        tab.translatePX = -( document.body.clientWidth + Math.abs(this._tabs[ i - 1 ].translatePX) );
+      }else{
+        tab.left = 0;
+        tab.right = tab.width;
+        tab.translatePX = 0;
+      }
 
-        tab.marginLeft = tab.left + tab.center;
+      tab.marginLeft = tab.left + tab.center;
 
-        if( this._tabs[i - 1] ){
-          tab.previousTabScreenRatio = (tab.marginLeft - this._tabs[i-1].marginLeft) / document.body.clientWidth;
-        }
+      if( this._tabs[i - 1] ){
+        tab.previousTabScreenRatio = (tab.marginLeft - this._tabs[i-1].marginLeft) / document.body.clientWidth;
+      }
 
-        this._tabs.push(tab);
+      this._tabs.push(tab);
 
-      });
-    //}
+    });
   }
 
   changeTab(index: number, button) {
@@ -161,8 +163,6 @@ export class IonicShellTabsButtonsComponent {
 
   manageTabs( numTab ){
 
-    // if( tabsScroll.equalTabs ){ return; }
-
     this.tabsScroll.tabManaged = numTab;
 
     cancelAnimationFrame(this.tabsScroll.requestAnimationFrameReference);
@@ -203,44 +203,12 @@ export class IonicShellTabsButtonsComponent {
     this.indicator.nativeElement.style.transition = '';
     this.indicatorHelper.nativeElement.style.transition = '';
 
-    // touch.endPosition = event.touches[0].clientX;
-    /*currentX
-    currentY
-    diff
-    startX
-    startY*/
-
-    // if ( !leftLimit() && (event.touches[0].clientX > touch.startPosition + touch.offset) ) {
     const index = this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex();
-
     event = event._touches;
 
-    /*console.log(event.currentX);
-    console.log(event.startX);
-    console.log( event.currentX < event.startX );*/
-
     if ( !(index === 0) && (event.currentX > event.startX ) ) {
-
-      // event.preventDefault();
-      // state.sliding = true;
-
-      // var nexTab = dom.tabsArray[ tabsViews.currentTab + -1 ];
-
-      // touch.move = event.touches[0].clientX - touch.offset - touch.startPosition;
-      // dom.tabsMove.style.transform = "translateX(" + Math.floor(tabsData[ tabsViews.currentTab ].translatePX + touch.move) + "px)";
-
       this.indicatorHelper.nativeElement.style.transform = "translateX("+ Math.floor(this._tabs[index].marginLeft - ( (event.currentX - event.startX) * this._tabs[ index ].previousTabScreenRatio) )+"px)";
-
-    // } else if ( !rightLimit() && ( event.touches[0].clientX < touch.startPosition - touch.offset ) ) {
     } else if ( !(index === this._tabs.length-1) && ( event.currentX < event.startX ) ) {
-
-      // event.preventDefault();
-      // state.sliding = true;
-
-      // var nexTab = dom.tabsArray[ tabsViews.currentTab + 1 ];
-
-      // touch.move = touch.startPosition - event.touches[0].clientX - touch.offset;
-      // dom.tabsMove.style.transform = "translateX(" + Math.floor(tabsData[ tabsViews.currentTab ].translatePX - touch.move) + "px)";
       this.indicatorHelper.nativeElement.style.transform = "translateX(" + Math.floor( this._tabs[index].marginLeft + ( ( event.startX - event.currentX ) * this._tabs[ index+1 ].previousTabScreenRatio ) ) +"px)";
     }
 

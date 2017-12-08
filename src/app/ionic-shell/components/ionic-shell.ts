@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ContentChild, ViewChild } from '@angular/core';
 import { IonicShellProvider } from '../providers/ionic-shell';
+import { IonicShellHeaderComponent } from './ionic-shell-header/ionic-shell-header';
+import { IonicShellTabsButtonsComponent } from './ionic-shell-tabs-buttons/ionic-shell-tabs-buttons';
 
 @Component({
   selector: 'ionic-shell',
@@ -8,6 +10,9 @@ import { IonicShellProvider } from '../providers/ionic-shell';
 export class IonicShellComponent {
 
   @Input() private bottomTabs: boolean;
+
+  @ContentChild(IonicShellHeaderComponent) h: IonicShellHeaderComponent;
+  @ViewChild(IonicShellTabsButtonsComponent) b: IonicShellTabsButtonsComponent;
 
   constructor(
     private _ionicShellProvider: IonicShellProvider
@@ -20,9 +25,12 @@ export class IonicShellComponent {
 
   ngAfterViewInit(){
     setTimeout(() => {
-      this._ionicShellProvider.buttonsHeight.next( this._ionicShellProvider._headerRef.clientHeight );
-      if ( this._ionicShellProvider._buttonsRef ) {
-        this._ionicShellProvider.buttonsBottoms.next( this._ionicShellProvider._buttonsRef.clientHeight );
+      this._ionicShellProvider.headerTitleRefHeightSubject.next( this.h.ionHeader.getNativeElement().clientHeight );
+
+      if ( this.h.ionicShellTabsButtonsComponent ) {
+        this._ionicShellProvider.tabsButtonsRefHeightSubject.next( this.h.ionicShellTabsButtonsComponent.getNativeElement().clientHeight );
+      }else if ( this.b ) {
+        this._ionicShellProvider.tabsButtonsRefHeightSubject.next( this.b.getNativeElement().clientHeight );
       }
     });
   }

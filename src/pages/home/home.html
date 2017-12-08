@@ -1,16 +1,15 @@
 <ion-content>
 
-  <!--<ion-menu [content]="mycontent">
-    <ion-content>
-      <ion-list>
-        <p>some menu content, could be list items</p>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+  <ionic-shell [bottomTabs]="true">
 
-  <div #mycontent>prueba menu</div>-->
-
-  <ionic-shell [bottomTabs]="false">
+    <ion-menu [content]="mycontent">
+      <ion-content >
+        <ion-list>
+          <p>some menu content, could be list items</p>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <div #mycontent></div>
 
     <ionic-shell-header text="header">
       <button ion-button icon-only>
@@ -19,7 +18,6 @@
     </ionic-shell-header>
 
     <ionic-shell-tabs>
-      <!--paginationType="none" [pager]="false"-->
       <ionic-shell-tab [root]="uno" style="background-color: green" text="uno"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno" text="dos"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno" style="background-color: green" text="tres"></ionic-shell-tab>
@@ -35,7 +33,6 @@
       <ionic-shell-tab [root]="uno"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno"></ionic-shell-tab>
-
     </ionic-shell-tabs>
 
   </ionic-shell>
