@@ -46,17 +46,7 @@ export class IonicShellTabsButtonsComponent extends Ion {
     this._ionicShellProvider.tabsLabels.subscribe( tabsLabel => {
       this.tabsLabel = tabsLabel;
     });
-    this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe( () =>{
-      this.manageTabs(this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex());
-      this.indicator.nativeElement.style.transition = 'transform 0.3s';
-      this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
-      this.updateIndicator();
-    });
 
-    this._ionicShellProvider.ionicShellTabsComponent.ionSlideDrag.subscribe( data => {
-      console.log(data);
-      this.touchMove(data);
-    });
   }
 
   ngAfterViewInit() {
@@ -71,6 +61,18 @@ export class IonicShellTabsButtonsComponent extends Ion {
       this.indicator.nativeElement.style.transition = 'transform 0.3s';
       this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
     }, 0);
+
+    this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe( () =>{
+      this.manageTabs(this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex());
+      this.indicator.nativeElement.style.transition = 'transform 0.3s';
+      this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
+      this.updateIndicator();
+    });
+
+    this._ionicShellProvider.ionicShellTabsComponent.ionSlideDrag.subscribe( data => {
+      console.log(data);
+      this.touchMove(data);
+    });
   }
 
   ngDoCheck2(){
@@ -180,6 +182,10 @@ export class IonicShellTabsButtonsComponent extends Ion {
   }
 
   touchMove(event){
+
+    if ( !this._ionicShellProvider.ionicShellTabsComponent._allowSwipeToNext && !this._ionicShellProvider.ionicShellTabsComponent._allowSwipeToPrev ) {
+      return;
+    }
 
     this.indicator.nativeElement.style.transition = '';
     this.indicatorHelper.nativeElement.style.transition = '';

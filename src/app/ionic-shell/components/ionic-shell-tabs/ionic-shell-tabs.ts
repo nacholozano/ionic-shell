@@ -76,9 +76,8 @@ export class IonicShellTabsComponent extends Slides {
     this._tabs.push(tab);
   }
 
-  /* public a(){
-    this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.emit( this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex() ); */
-    // console.log(345);
-  /* } */
+  public updateIndicator(){
+    this.ionSlideWillChange.emit(this);
+  }
 
 }
