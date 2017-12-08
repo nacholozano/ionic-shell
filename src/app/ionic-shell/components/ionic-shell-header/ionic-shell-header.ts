@@ -37,7 +37,7 @@ export class IonicShellHeaderComponent {
   }
 
   public setTranslateY(transform: number){
-    this._el.nativeElement.style.transform = 'translateY(' + transform + 'px)';
+    this._el.nativeElement.style.transform = `translateY(${transform}px)`;
   }
 
 }

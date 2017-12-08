@@ -1,6 +1,7 @@
 import { Component, HostListener, HostBinding, ElementRef, ChangeDetectorRef, Injector } from '@angular/core';
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { IonicShellProvider } from '../providers/ionic-shell';
+import { Observable } from 'rxjs/Observable';
 
 // @IonicPage()
 @Component({
@@ -9,12 +10,12 @@ import { IonicShellProvider } from '../providers/ionic-shell';
 })
 export class IonicShellPage {
 
-  num;
-
+  private _num;
   public navCtrl: NavController;
   public navParams: NavParams;
   protected IonicShellProvider:IonicShellProvider;
   protected _el: ElementRef;
+  private _scrollObservable;
 
   constructor(
     protected injector: Injector
@@ -27,7 +28,7 @@ export class IonicShellPage {
 
   ngOnInit(){
     this.IonicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe(data => {
-      if ( data.realIndex !== this.num ){ return; }
+      if ( data.realIndex !== this._num ){ return; }
       let h;
       this.IonicShellProvider.tabsButtonsRefHeightSubject.subscribe(c => {
         h = c;
@@ -35,40 +36,41 @@ export class IonicShellPage {
       if ( this._el.nativeElement.scrollTop < h ) {
         this.IonicShellProvider.headerComponentRef.setTranslateY(0);
       }
+      this.IonicShellProvider.headerScroll = Math.floor(this._el.nativeElement.scrollTop);
     });
   }
 
   ionViewDidLoad() {
-    this.num = this.IonicShellProvider.pagesTempCounterID;
+    this._num = this.IonicShellProvider.pagesTempCounterID;
     this.IonicShellProvider.pagesTempCounterID++;
 
     let v = 0;
     this.IonicShellProvider.headerTitleRefHeightSubject.subscribe( height => {
-      this._el.nativeElement.style.paddingTop = height + 'px';
+      this._el.nativeElement.style.paddingTop = `${height}px`;
       v = height;
     });
 
     this.IonicShellProvider.tabsButtonsRefHeightSubject.subscribe( height => {
       if ( !this.IonicShellProvider.bottomTabs ) {
-        this._el.nativeElement.style.paddingTop = height + v + 'px';
+        this._el.nativeElement.style.paddingTop = `${height+v}px`;
       }else {
-        this._el.nativeElement.style.paddingBottom = height + 'px';
+        this._el.nativeElement.style.paddingBottom = `${height}px`;
       }
     });
   }
 
   @HostListener('scroll', ['$event.target'])
-  onClick(tab) {
-      var scrollTop = Math.floor(tab.scrollTop);
-      var scroll = scrollTop - this.IonicShellProvider.headerScroll;
+  onScroll(tab) {
+    var scrollTop = Math.floor(this._el.nativeElement.scrollTop);
+    var scroll = scrollTop - this.IonicShellProvider.headerScroll;
 
-      if ( scroll < 0 && ( scroll < -this.IonicShellProvider.distanceToToggleHeader ) ) {
-        this.IonicShellProvider.hideHeader.next(false);
-        this.IonicShellProvider.headerScroll = scrollTop;
-      }else if ( scroll > 0 && ( scroll > this.IonicShellProvider.distanceToToggleHeader ) ) {
-        this.IonicShellProvider.hideHeader.next(true);
-        this.IonicShellProvider.headerScroll = scrollTop;
-      }
+    if ( scroll < 0 && ( scroll < -this.IonicShellProvider.distanceToToggleHeader ) ) {
+      this.IonicShellProvider.hideHeader.next(false);
+      this.IonicShellProvider.headerScroll = scrollTop;
+    }else if ( scroll > 0 && ( scroll > this.IonicShellProvider.distanceToToggleHeader ) ) {
+      this.IonicShellProvider.hideHeader.next(true);
+      this.IonicShellProvider.headerScroll = scrollTop;
+    }
   }
 
 }

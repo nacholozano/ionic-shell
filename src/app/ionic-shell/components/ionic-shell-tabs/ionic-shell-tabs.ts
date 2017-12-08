@@ -52,12 +52,12 @@ export class IonicShellTabsComponent extends Slides {
   }
 
   ngOnInit(){
-    this._wrapper = (this.getNativeElement().children[0].querySelector('.' + 'swiper-wrapper'));
+    this._wrapper = (this.getNativeElement().children[0].querySelector('.swiper-wrapper'));
     this._ionicShellProvider.ionicShellTabsComponent = this;
     this.pager = false;
 
     this.lockSwipeToPrev(true);
-    this.ionSlideWillChange.subscribe( () => {
+    this.ionSlideDidChange.subscribe( () => {
       this._lockSwipe();
     });
   }

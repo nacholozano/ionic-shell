@@ -14,11 +14,9 @@ export class IonicShellTabsButtonsComponent extends Ion {
   private _indicatorTransition = 'transform 0.3s';
 
   private tabsScroll = {
-    speed: 10, // Scroll speed if tab is not fully visible
+    speed: 8, // Scroll speed if tab is not fully visible
     requestAnimationFrameReference: null, // Reference to cancel raf
     tabManaged: null, // Checking if this tab is fully visible
-    equalTabs: false, // All tabs have equal width
-    equalWdith: null
   };
 
   @ViewChildren('button') button: QueryList<any>;
@@ -95,6 +93,8 @@ export class IonicShellTabsButtonsComponent extends Ion {
       this._tabs.push(tab);
 
     });
+
+    console.log(this._tabs);
   }
 
   changeTab(index: number, button) {
@@ -161,11 +161,9 @@ export class IonicShellTabsButtonsComponent extends Ion {
   }
 
   updateIndicator(){
-
     const tab = this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex() || 0;
-
-    this.indicatorHelper.nativeElement.style.transform = "translateX(" + this._tabs[tab].marginLeft + "px)";
-    this.indicator.nativeElement.style.transform  = "scaleX("+ this._tabs[tab].width  +")";
+    this.indicatorHelper.nativeElement.style.transform = `translateX(${this._tabs[tab].marginLeft}px)`;
+    this.indicator.nativeElement.style.transform  = `scaleX(${this._tabs[tab].width})`;
   }
 
   touchMove(event){
@@ -174,21 +172,21 @@ export class IonicShellTabsButtonsComponent extends Ion {
       return;
     }
 
-    this.indicator.nativeElement.style.transition = '';
-    this.indicatorHelper.nativeElement.style.transition = '';
-
     const index = this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex();
 
     if( !this._tabs[index] ){
       return;
     }
 
+    this.indicator.nativeElement.style.transition = '';
+    this.indicatorHelper.nativeElement.style.transition = '';
+
     event = event._touches;
 
     if ( !(index === 0) && (event.currentX > event.startX ) ) {
-      this.indicatorHelper.nativeElement.style.transform = "translateX("+ Math.floor(this._tabs[index].marginLeft - ( (event.currentX - event.startX) * this._tabs[ index ].previousTabScreenRatio) )+"px)";
+      this.indicatorHelper.nativeElement.style.transform = `translateX(${ Math.floor(this._tabs[index].marginLeft - ((event.currentX - event.startX) * this._tabs[ index ].previousTabScreenRatio)) }px)`;
     } else if ( !(index === this._tabs.length-1) && ( event.currentX < event.startX ) ) {
-      this.indicatorHelper.nativeElement.style.transform = "translateX(" + Math.floor( this._tabs[index].marginLeft + ( ( event.startX - event.currentX ) * this._tabs[ index+1 ].previousTabScreenRatio ) ) +"px)";
+      this.indicatorHelper.nativeElement.style.transform = `translateX(${ Math.floor(this._tabs[index].marginLeft + ((event.startX - event.currentX) * this._tabs[ index+1 ].previousTabScreenRatio )) }px)`;
     }
 
   }

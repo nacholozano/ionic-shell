@@ -1,8 +1,8 @@
 <div class="buttons-container">
   <button #button *ngFor="let tabLabel of tabsLabel; let index = index" (click)="changeTab(index)">
-    <ng-container *ngIf="!tabLabel">
+    <!-- <ng-container *ngIf="!tabLabel">
       asdasdasd
-    </ng-container>
+    </ng-container> -->
     {{ tabLabel }}
   </button>
 </div>
