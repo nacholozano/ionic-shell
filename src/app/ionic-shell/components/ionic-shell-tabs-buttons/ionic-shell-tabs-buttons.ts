@@ -53,7 +53,7 @@ export class IonicShellTabsButtonsComponent extends Ion {
     if ( this._ionicShellProvider.bottomTabs ) {
       this._position = 'absolute';
       this._bottom = 0;
-      this._zindex = 150;
+      this._zindex = 70;
     }
     setTimeout(() => {
       this.ngDoCheck2();
