@@ -1,12 +1,12 @@
 ionic-shell-tabs-buttons {
   display: block;
 
-  .button-md{
+  /*.button-md{
     margin: 0;
     .button-inner{
       flex-direction: column;
     }
-  }
+  }*/
 
   $green: #4CAF50;
   $tab-font-color: #3a3a3a;
@@ -30,7 +30,7 @@ ionic-shell-tabs-buttons {
   white-space: nowrap;
   color: $inactive-tab-color;
 
-  .tabs-link {
+  /*.tabs-link {
     display: block;
     overflow-x: auto;
     background-color: white;
@@ -60,7 +60,7 @@ ionic-shell-tabs-buttons {
 
       }
     }
-  }
+  }*/
 }
 
 .tab-indicator {

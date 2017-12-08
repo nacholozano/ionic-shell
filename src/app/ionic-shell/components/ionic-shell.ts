@@ -11,10 +11,9 @@ import { Menu } from 'ionic-angular';
 export class IonicShellComponent {
 
   @Input() private bottomTabs: boolean;
-
-  @ContentChild(Menu) m: Menu;
-  @ContentChild(IonicShellHeaderComponent) h: IonicShellHeaderComponent;
-  @ViewChild(IonicShellTabsButtonsComponent) b: IonicShellTabsButtonsComponent;
+  @ContentChild(Menu) menu: Menu;
+  @ContentChild(IonicShellHeaderComponent) header: IonicShellHeaderComponent;
+  @ViewChild(IonicShellTabsButtonsComponent) buttons: IonicShellTabsButtonsComponent;
 
   constructor(
     private _ionicShellProvider: IonicShellProvider
@@ -26,16 +25,16 @@ export class IonicShellComponent {
 
   ngAfterViewInit(){
     setTimeout(() => {
-      this._ionicShellProvider.headerTitleRefHeightSubject.next( this.h.ionHeader.getNativeElement().clientHeight );
+      this._ionicShellProvider.headerTitleRefHeightSubject.next( this.header.ionHeader.getNativeElement().clientHeight );
 
-      if ( this.h.ionicShellTabsButtonsComponent ) {
-        this._ionicShellProvider.tabsButtonsRefHeightSubject.next( this.h.ionicShellTabsButtonsComponent.getNativeElement().clientHeight );
-      }else if ( this.b ) {
-        this._ionicShellProvider.tabsButtonsRefHeightSubject.next( this.b.getNativeElement().clientHeight );
+      if ( this.header.ionicShellTabsButtonsComponent ) {
+        this._ionicShellProvider.tabsButtonsRefHeightSubject.next( this.header.ionicShellTabsButtonsComponent.getNativeElement().clientHeight );
+      }else if ( this.buttons ) {
+        this._ionicShellProvider.tabsButtonsRefHeightSubject.next( this.buttons.getNativeElement().clientHeight );
       }
 
-      if( this.m && this.h ) {
-        this.h.hasMenu = true;
+      if( this.menu && this.header ) {
+        this.header.hasMenu = true;
       }
     });
   }

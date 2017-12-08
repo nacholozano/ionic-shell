@@ -20,9 +20,7 @@ export class IonicShellTabsButtonsComponent extends Ion {
     equalWdith: null
   };
 
-  //@ViewChildren(Button) button: QueryList<Button>;
   @ViewChildren('button') button: QueryList<any>;
-
   @ViewChild('indicatorHelper') indicatorHelper;
   @ViewChild('indicator') indicator;
 
@@ -35,8 +33,6 @@ export class IonicShellTabsButtonsComponent extends Ion {
   @HostBinding('style.zIndex')
   private _zindex: number;
 
-  icons;
-
   constructor(
     public _ionicShellProvider: IonicShellProvider,
     private _el: ElementRef,
@@ -44,16 +40,12 @@ export class IonicShellTabsButtonsComponent extends Ion {
     private _rendered: Renderer
   ) {
     super(_config, _el, _rendered );
-    /*this._config = config;
-    this._elementRef = elementRef;
-    this._renderer = renderer;*/
   }
 
   ngOnInit() {
     this._ionicShellProvider.tabsLabels.subscribe( tabsLabel => {
       this.tabsLabel = tabsLabel;
     });
-    // ionSlideDidChange
     this._ionicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe( () =>{
       this.manageTabs(this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex());
       this.indicator.nativeElement.style.transition = 'transform 0.3s';
@@ -68,27 +60,21 @@ export class IonicShellTabsButtonsComponent extends Ion {
   }
 
   ngAfterViewInit() {
-
-    /* this._ionicShellProvider.bottomTabs.subscribe( bottom => { */
     if ( this._ionicShellProvider.bottomTabs ) {
       this._position = 'absolute';
       this._bottom = 0;
       this._zindex = 150;
     }
-    /* }); */
-
     setTimeout(() => {
       this.ngDoCheck2();
       this.updateIndicator();
       this.indicator.nativeElement.style.transition = 'transform 0.3s';
       this.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
     }, 0);
-
   }
 
   ngDoCheck2(){
     this.button.toArray().forEach((button, i) => {
-      //const native = button.getNativeElement();
       const native = button.nativeElement;
 
       var tab: any = {

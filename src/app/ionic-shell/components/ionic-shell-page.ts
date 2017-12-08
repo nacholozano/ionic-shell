@@ -2,7 +2,7 @@ import { Component, HostListener, HostBinding, ElementRef, ChangeDetectorRef, In
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { IonicShellProvider } from '../providers/ionic-shell';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'ionic-shell-page',
   template: '',
@@ -15,7 +15,6 @@ export class IonicShellPage {
   public navParams: NavParams;
   protected IonicShellProvider:IonicShellProvider;
   protected _el: ElementRef;
-  // private _changeDetectorRef: ChangeDetectorRef;
 
   constructor(
     protected injector: Injector
@@ -24,7 +23,6 @@ export class IonicShellPage {
     this.navParams = injector.get(NavParams);
     this.IonicShellProvider = injector.get(IonicShellProvider);
     this._el = injector.get(ElementRef);
-    // this._changeDetectorRef = injector.get(ChangeDetectorRef);
   }
 
   ngOnInit(){

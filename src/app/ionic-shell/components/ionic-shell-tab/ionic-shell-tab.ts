@@ -35,8 +35,6 @@ export class IonicShellTabComponent extends NavControllerBase {
    */
   private loaded: boolean = false;
 
-  @ViewChild('viewport') v2;
-
   @ViewChild('viewport', {read: ViewContainerRef})
   set _vp(val: ViewContainerRef) {
     this.setViewport(val);
@@ -44,10 +42,8 @@ export class IonicShellTabComponent extends NavControllerBase {
 
   constructor(
     private _ionicShellProvider: IonicShellProvider,
-    //@Inject(forwardRef(() => ParentComponent)) private _parent:ParentComponent
     @Inject(forwardRef(() => IonicShellTabsComponent))
     parent: IonicShellTabsComponent,
-    // parent: IonicShellTabsComponent,
     app: App,
     config: Config,
     plt: Platform,
@@ -73,15 +69,12 @@ export class IonicShellTabComponent extends NavControllerBase {
 
   ngOnInit() {
     this.parent.addTab(this);
-    console.log( 'root', this.root );
   }
 
   public load(load: boolean) {
     if (load && !this.loaded) {
-      /* this.init.then(() => { */
       this.push(this.root, {}, { animate: false });
       this.loaded = true;
-      /* }); */
     }
   }
 

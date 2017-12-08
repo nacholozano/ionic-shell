@@ -37,7 +37,6 @@ export class IonicShellHeaderComponent {
     });
 
     this._ionicShellProvider.headerComponentRef = this;
-
   }
 
 }

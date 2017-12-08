@@ -1,16 +1,16 @@
 ionic-shell-tabs {
   .tabs-move-container {
-    position: relative;
+    /* position: relative;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden; */
     .tabs-move {
-      position: relative;
+      /* position: relative;
       white-space: nowrap;
       font-size: 0px;
       height:100%;
       width: 100%;
       will-change: transform;
-      transition: transform 0.3s;
+      transition: transform 0.3s; */
     }
   }
 }
