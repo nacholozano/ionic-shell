@@ -60,7 +60,6 @@ export class IonicShellTabsComponent extends Slides {
   }
 
   ngAfterViewInit() {
-    console.log( this.tabs );
     this._populateTabsButtons();
   }
 

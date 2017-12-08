@@ -28,7 +28,6 @@ export class IonicShellPage {
   ngOnInit(){
     this.IonicShellProvider.ionicShellTabsComponent.ionSlideWillChange.subscribe(data => {
       if ( data.realIndex !== this.num ){ return; }
-      console.log(data);
       let h;
       this.IonicShellProvider.tabsButtonsRefHeightSubject.subscribe(c => {
         h = c;
@@ -40,7 +39,6 @@ export class IonicShellPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UnoPage', this.IonicShellProvider.pagesTempCounterID);
     this.num = this.IonicShellProvider.pagesTempCounterID;
     this.IonicShellProvider.pagesTempCounterID++;
 

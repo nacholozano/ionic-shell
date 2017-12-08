@@ -70,7 +70,6 @@ export class IonicShellTabsButtonsComponent extends Ion {
     });
 
     this._ionicShellProvider.ionicShellTabsComponent.ionSlideDrag.subscribe( data => {
-      console.log(data);
       this.touchMove(data);
     });
   }
@@ -127,7 +126,6 @@ export class IonicShellTabsButtonsComponent extends Ion {
   }
 
   decreaseScroll( ){
-    const x = 5 + 6;
     this._el.nativeElement.scrollLeft = this._el.nativeElement.scrollLeft - this.tabsScroll.speed;
 
     if( this.tabHideLeftPart( this.tabsScroll.tabManaged ) ){
@@ -136,7 +134,6 @@ export class IonicShellTabsButtonsComponent extends Ion {
   }
 
   increaseScroll( ){
-    const x = 5 + 6;
     this._el.nativeElement.scrollLeft = this._el.nativeElement.scrollLeft + this.tabsScroll.speed;
 
     if( this.tabHideRigthPart( this.tabsScroll.tabManaged ) ){
@@ -191,6 +188,11 @@ export class IonicShellTabsButtonsComponent extends Ion {
     this.indicatorHelper.nativeElement.style.transition = '';
 
     const index = this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex();
+
+    if( !this._tabs[index] ){
+      return;
+    }
+
     event = event._touches;
 
     if ( !(index === 0) && (event.currentX > event.startX ) ) {

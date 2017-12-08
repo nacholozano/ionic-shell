@@ -1,5 +1,6 @@
 ionic-shell-tabs-buttons {
   display: block;
+  width: 100%;
 
   /*.button-md{
     margin: 0;
@@ -7,6 +8,10 @@ ionic-shell-tabs-buttons {
       flex-direction: column;
     }
   }*/
+  button{
+    background-color: transparent;
+    padding: 0.5em;
+  }
 
   $green: #4CAF50;
   $tab-font-color: #3a3a3a;
