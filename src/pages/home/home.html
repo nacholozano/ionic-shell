@@ -14,7 +14,7 @@
     <div #mycontent></div>
 
     <ionic-shell-header text="header">
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="presentPopover($event)">
         <ion-icon name="options"></ion-icon>
       </button>
     </ionic-shell-header>

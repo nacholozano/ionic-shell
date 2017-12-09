@@ -10,7 +10,7 @@ import { UnoPage } from '../pages/uno/uno';
 import { IonicShellModule } from './ionic-shell/ionic-shell.module';
 import { HomeModule } from '../pages/home/home.module';
 import { UnoModule } from '../pages/uno/uno.module';
-import { DosModule } from '../pages/dos/dos.module';
+// import { DosModule } from '../pages/dos/dos.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { DosModule } from '../pages/dos/dos.module';
     IonicShellModule.forRoot(),
     HomeModule,
     UnoModule,
-    DosModule
+    // DosModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
