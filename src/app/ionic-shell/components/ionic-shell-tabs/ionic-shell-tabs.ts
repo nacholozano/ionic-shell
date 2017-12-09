@@ -56,7 +56,6 @@ export class IonicShellTabsComponent extends Slides {
     this._ionicShellProvider.ionicShellTabsComponent = this;
     this.pager = false;
 
-    this.lockSwipeToPrev(true);
     this.ionSlideDidChange.subscribe( () => {
       this._lockSwipe();
     });
@@ -64,6 +63,10 @@ export class IonicShellTabsComponent extends Slides {
 
   ngAfterViewInit() {
     this._populateTabsButtons();
+
+    if( this.isBeginning() ) {
+      this.lockSwipeToPrev(true);
+    }
   }
 
   private _populateTabsButtons(): void {
