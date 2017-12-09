@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, IonicPage, NavParams, PopoverController, MenuController } from 'ionic-angular';
 import { UnoPage } from '../uno/uno';
 import { IonicShellProvider } from '../../app/ionic-shell/providers/ionic-shell';
 import { PopoverPage } from './popover';
@@ -18,8 +18,9 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private navParams: NavParams,
-    public ionicShellProvider: IonicShellProvider,
-    public popoverCtrl: PopoverController
+    private _ionicShellProvider: IonicShellProvider,
+    public popoverCtrl: PopoverController,
+    private _menuController: MenuController
   ) {}
 
   presentPopover(myEvent) {
@@ -27,6 +28,11 @@ export class HomePage {
     popover.present({
       ev: myEvent
     });
+  }
+
+  menuItemClick(index: number){
+    this._ionicShellProvider.ionicShellTabsComponent.slideTo(index);
+    this._menuController.close();
   }
 
 }

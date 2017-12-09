@@ -5,9 +5,11 @@
     <ion-menu [content]="mycontent">
       <ion-content>
         <ion-list>
-          <ion-item menuClose detail-none (click)="ionicShellProvider.ionicShellTabsComponent.slideTo(0)">Uno</ion-item>
-          <ion-item menuClose detail-none (click)="ionicShellProvider.ionicShellTabsComponent.slideTo(3)">Cuatro</ion-item>
-          <ion-item menuClose detail-none (click)="ionicShellProvider.ionicShellTabsComponent.slideTo(8)">Nueve</ion-item>
+          <ion-item detail-none (tap)="menuItemClick(0)">Uno</ion-item>
+          <ion-item detail-none (tap)="menuItemClick(3)">Cuatro</ion-item>
+          <ion-item detail-none (tap)="menuItemClick(8)">Nueve</ion-item>
+          <!-- <ion-item menuClose detail-none (tap)="ionicShellProvider.ionicShellTabsComponent.slideTo(3)">Cuatro</ion-item>
+          <ion-item menuClose detail-none (tap)="ionicShellProvider.ionicShellTabsComponent.slideTo(8)">Nueve</ion-item> -->
         </ion-list>
       </ion-content>
     </ion-menu>

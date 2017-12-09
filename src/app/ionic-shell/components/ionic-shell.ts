@@ -53,19 +53,4 @@ export class IonicShellComponent {
     });
   }
 
-  @HostListener('touchstart', ['$event'])
-  touchMove(event){
-    console.log(event);
-
-    if ( event.touches[0].clientX < 30 ) {
-      console.log('ahora!');
-      this.tabs.lockSwipes(true);
-    }
-  }
-  /* @HostListener('touchend', ['$event'])
-  touchMove2(event){
-    console.log('ahora 2!');
-    this.tabs.lockSwipes(false);
-  } */
-
 }
