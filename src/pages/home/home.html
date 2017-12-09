@@ -3,9 +3,11 @@
   <ionic-shell [bottomTabs]="false">
 
     <ion-menu [content]="mycontent">
-      <ion-content >
+      <ion-content>
         <ion-list>
-          <p>some menu content, could be list items</p>
+          <ion-item menuClose detail-none (click)="ionicShellProvider.ionicShellTabsComponent.slideTo(0)">Uno</ion-item>
+          <ion-item menuClose detail-none (click)="ionicShellProvider.ionicShellTabsComponent.slideTo(3)">Cuatro</ion-item>
+          <ion-item menuClose detail-none (click)="ionicShellProvider.ionicShellTabsComponent.slideTo(8)">Nueve</ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>
@@ -22,7 +24,6 @@
       <ionic-shell-tab [root]="uno" text="dos"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno" text="tres"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno" text="cuatro"></ionic-shell-tab>
-      <ionic-shell-tab [root]="uno" text="cinco"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno" text="cinco"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno" text="seis"></ionic-shell-tab>
       <ionic-shell-tab [root]="uno" text="siete"></ionic-shell-tab>

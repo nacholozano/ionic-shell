@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { UnoPage } from '../uno/uno';
-import { DosPage } from '../dos/dos';
+import { IonicShellProvider } from '../../app/ionic-shell/providers/ionic-shell';
 
 @IonicPage({
   segment: 'home/:type'
@@ -13,10 +13,11 @@ import { DosPage } from '../dos/dos';
 export class HomePage {
 
   uno:any = UnoPage;
-  dos:any = DosPage;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams) {
-
-  }
+  constructor(
+    public navCtrl: NavController,
+    private navParams: NavParams,
+    public ionicShellProvider: IonicShellProvider
+  ) {}
 
 }
