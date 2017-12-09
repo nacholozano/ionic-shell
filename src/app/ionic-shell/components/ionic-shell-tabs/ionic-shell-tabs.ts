@@ -55,18 +55,10 @@ export class IonicShellTabsComponent extends Slides {
     this._wrapper = (this.getNativeElement().children[0].querySelector('.swiper-wrapper'));
     this._ionicShellProvider.ionicShellTabsComponent = this;
     this.pager = false;
-
-    this.ionSlideDidChange.subscribe( () => {
-      this._lockSwipe();
-    });
   }
 
   ngAfterViewInit() {
     this._populateTabsButtons();
-
-    if( this.isBeginning() ) {
-      this.lockSwipeToPrev(true);
-    }
   }
 
   private _populateTabsButtons(): void {
@@ -83,19 +75,6 @@ export class IonicShellTabsComponent extends Slides {
 
   public updateIndicator(){
     this.ionSlideWillChange.emit(this);
-  }
-
-  private _lockSwipe(){
-    if ( this.isBeginning() ){
-      this.lockSwipeToPrev(true);
-      this.lockSwipeToNext(false);
-    }else if ( this.isEnd() ) {
-      this.lockSwipeToNext(true);
-      this.lockSwipeToPrev(false);
-    }else {
-      this.lockSwipeToPrev(false);
-      this.lockSwipeToNext(false);
-    }
   }
 
 }

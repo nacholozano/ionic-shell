@@ -27,17 +27,6 @@ export class IonicShellComponent {
 
   ngAfterViewInit(){
 
-    this.menu.ionDrag.subscribe( () => {
-      this._ionicShellProvider.ionicShellTabsComponent.lockSwipes(true);
-    });
-
-    this.menu.ionClose.subscribe( () => {
-      this._ionicShellProvider.ionicShellTabsComponent.lockSwipes(false);
-      if ( this._ionicShellProvider.ionicShellTabsComponent.isBeginning() ) {
-        this._ionicShellProvider.ionicShellTabsComponent.lockSwipeToPrev(true);
-      }
-    });
-
     setTimeout(() => {
       this._ionicShellProvider.headerTitleRefHeightSubject.next( this.header.ionHeader.getNativeElement().clientHeight );
 
