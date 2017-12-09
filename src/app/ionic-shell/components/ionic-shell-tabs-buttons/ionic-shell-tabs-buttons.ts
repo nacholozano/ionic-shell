@@ -133,6 +133,8 @@ export class IonicShellTabsButtonsComponent extends Ion {
 
   manageTabs( numTab ){
 
+    if ( !this._tabs[numTab] ) { return; }
+
     this.tabsScroll.tabManaged = numTab;
 
     cancelAnimationFrame(this.tabsScroll.requestAnimationFrameReference);
@@ -162,6 +164,7 @@ export class IonicShellTabsButtonsComponent extends Ion {
 
   updateIndicator(){
     const tab = this._ionicShellProvider.ionicShellTabsComponent.getActiveIndex() || 0;
+    if( !this._tabs[tab] ){ return; }
     this.indicatorHelper.nativeElement.style.transform = `translateX(${this._tabs[tab].marginLeft}px)`;
     this.indicator.nativeElement.style.transform  = `scaleX(${this._tabs[tab].width})`;
   }

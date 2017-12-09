@@ -14,6 +14,8 @@ ionic-shell-tabs-buttons {
       flex-grow: 1;
       background-color: transparent;
       padding: 1.2em;
+      text-transform: uppercase;
+      // font-size: 1.1rem;
     }
   }
 
@@ -31,7 +33,7 @@ ionic-shell-tabs-buttons {
 }
 
 .tab-indicator {
-  height: 0.5rem;
+  height: 0.3rem;
 
   .indicator-helper {
     transform-origin: 0 0;

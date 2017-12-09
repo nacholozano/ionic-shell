@@ -40,6 +40,7 @@ export class IonicShellComponent {
         this.header.hasMenu = true;
       }
     });
+
   }
 
 }
