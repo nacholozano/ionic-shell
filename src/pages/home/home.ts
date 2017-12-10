@@ -31,8 +31,8 @@ export class HomePage {
   }
 
   menuItemClick(index: number){
-    this._ionicShellProvider.ionicShellTabsComponent.slideTo(index);
     this._menuController.close();
+    this._ionicShellProvider.ionicShellTabsComponent.slideTo(index);
   }
 
 }
