@@ -12,9 +12,13 @@ ionic-shell-tabs-buttons {
     display: flex;
     button{
       flex-grow: 1;
-      background-color: transparent;
-      padding: 1.2em;
       text-transform: uppercase;
+      text-align: center;
+      width: auto;
+      overflow: visible;
+      .item-inner{
+        border-bottom: none!important;
+      }
       // font-size: 1.1rem;
     }
   }

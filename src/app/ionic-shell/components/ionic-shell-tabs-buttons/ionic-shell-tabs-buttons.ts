@@ -65,7 +65,7 @@ export class IonicShellTabsButtonsComponent extends Ion {
 
   ngDoCheck2(){
     this.button.toArray().forEach((button, i) => {
-      const native = button.nativeElement;
+      const native = button.getNativeElement();
 
       var tab: any = {
         id: i,
