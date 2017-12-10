@@ -38,6 +38,13 @@ export class IonicShellPage {
       }
       this.IonicShellProvider.headerScroll = Math.floor(this._el.nativeElement.scrollTop);
     });
+
+    Observable
+      .fromEvent(this._el.nativeElement, 'scroll')
+      .debounceTime(50)
+      .subscribe( () => {
+        this.onScroll();
+      });
   }
 
   ionViewDidLoad() {
@@ -59,8 +66,8 @@ export class IonicShellPage {
     });
   }
 
-  @HostListener('scroll', ['$event.target'])
-  onScroll(tab) {
+  onScroll() {
+    console.log(0);
     var scrollTop = Math.floor(this._el.nativeElement.scrollTop);
     var scroll = scrollTop - this.IonicShellProvider.headerScroll;
 
