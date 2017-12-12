@@ -41,7 +41,7 @@ export class IonicShellPage {
 
     Observable
       .fromEvent(this._el.nativeElement, 'scroll')
-      .debounceTime(50)
+      .debounceTime(3)
       .subscribe( () => {
         this.onScroll();
       });
@@ -66,15 +66,15 @@ export class IonicShellPage {
     });
   }
 
+  // @HostListener('scroll')
   onScroll() {
-    console.log(0);
-    var scrollTop = Math.floor(this._el.nativeElement.scrollTop);
+    var scrollTop = this._el.nativeElement.scrollTop;
     var scroll = scrollTop - this.IonicShellProvider.headerScroll;
 
-    if ( scroll < 0 && ( scroll < -this.IonicShellProvider.distanceToToggleHeader ) ) {
+    if ( scrollTop < 1 || (scroll < 0 && (scroll < -this.IonicShellProvider.distanceToToggleHeader))) {
       this.IonicShellProvider.hideHeader.next(false);
       this.IonicShellProvider.headerScroll = scrollTop;
-    }else if ( scroll > 0 && ( scroll > this.IonicShellProvider.distanceToToggleHeader ) ) {
+    }else if ( scroll > 0 && (scroll > this.IonicShellProvider.distanceToToggleHeader)) {
       this.IonicShellProvider.hideHeader.next(true);
       this.IonicShellProvider.headerScroll = scrollTop;
     }
