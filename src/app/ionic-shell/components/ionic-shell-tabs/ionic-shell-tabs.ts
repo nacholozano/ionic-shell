@@ -49,6 +49,8 @@ export class IonicShellTabsComponent extends Slides {
       renderer
     );
     this.parent = <NavControllerBase>parent;
+
+    console.log('pafre-tabs', this);
   }
 
   ngOnInit(){

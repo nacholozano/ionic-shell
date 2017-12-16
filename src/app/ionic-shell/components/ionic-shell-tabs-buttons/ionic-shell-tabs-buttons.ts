@@ -1,11 +1,12 @@
-import { Component, Input, HostBinding, ElementRef, ViewChild, ContentChildren, QueryList, ViewChildren, Renderer } from '@angular/core';
+import { Component, Input, HostBinding, ElementRef, ViewChild, ContentChildren, QueryList, ViewChildren, Renderer, ChangeDetectionStrategy } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
 import { SegmentButton, Segment, Button, Ion, Config } from 'ionic-angular';
 import { HostListener } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'ionic-shell-tabs-buttons',
-  templateUrl: 'ionic-shell-tabs-buttons.html'
+  templateUrl: 'ionic-shell-tabs-buttons.html',
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IonicShellTabsButtonsComponent extends Ion {
 

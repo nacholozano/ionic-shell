@@ -1,11 +1,12 @@
-import { Component, Input, ViewChild, ElementRef, HostBinding } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
 import { Header } from 'ionic-angular';
 import { IonicShellTabsButtonsComponent } from '../ionic-shell-tabs-buttons/ionic-shell-tabs-buttons';
 
 @Component({
   selector: 'ionic-shell-header',
-  templateUrl: 'ionic-shell-header.html'
+  templateUrl: 'ionic-shell-header.html',
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IonicShellHeaderComponent {
 
