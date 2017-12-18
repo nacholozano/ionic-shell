@@ -28,7 +28,8 @@ export class IonicShellComponent {
   ngAfterViewInit(){
 
     setTimeout(() => {
-      this._ionicShellProvider.headerTitleRefHeightSubject.next( this.header.ionHeader.getNativeElement().clientHeight );
+      //this._ionicShellProvider.headerTitleRefHeightSubject.next( this.header.ionHeader.getNativeElement().clientHeight );
+      this._ionicShellProvider.headerTitleRefHeightSubject.next( this.header.ionHeaderNative.clientHeight );
 
       if ( this.header.ionicShellTabsButtonsComponent ) {
         this._ionicShellProvider.tabsButtonsRefHeightSubject.next( this.header.ionicShellTabsButtonsComponent.getNativeElement().clientHeight );

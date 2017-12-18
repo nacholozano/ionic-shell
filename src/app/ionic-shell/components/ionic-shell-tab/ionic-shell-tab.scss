@@ -2,8 +2,14 @@ ionic-shell-tab {
   padding: 1em;
   .ion-page{
     overflow: auto;
-    .scroll-content{
+    /*.scroll-content{
       overflow: hidden;
+    }*/
+  }
+  ion-content{
+    position: relative!important;
+    .scroll-content{
+      overflow-y: auto;
     }
   }
 }

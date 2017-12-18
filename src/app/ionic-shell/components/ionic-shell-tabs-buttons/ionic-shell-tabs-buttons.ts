@@ -1,7 +1,6 @@
 import { Component, Input, HostBinding, ElementRef, ViewChild, ContentChildren, QueryList, ViewChildren, Renderer, ChangeDetectionStrategy } from '@angular/core';
 import { IonicShellProvider } from '../../providers/ionic-shell';
 import { SegmentButton, Segment, Button, Ion, Config } from 'ionic-angular';
-import { HostListener } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'ionic-shell-tabs-buttons',
@@ -37,7 +36,7 @@ export class IonicShellTabsButtonsComponent extends Ion {
     this._ionicShellProvider.tabsLabels.subscribe( tabsLabel => {
       this.tabsLabel = tabsLabel;
     });
-
+    this._ionicShellProvider.a = this;
   }
 
   ngAfterViewInit() {

@@ -1,5 +1,5 @@
 <div class="swiper-container">
-  <div class="swiper-wrapper">
+  <div class="swiper-wrapper" (transitionend)="updateIndicator()">
     <ng-content></ng-content>
   </div>
   <div class="hide swiper-pagination"></div>

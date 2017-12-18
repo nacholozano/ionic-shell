@@ -1,6 +1,6 @@
 import { Component, ContentChildren, QueryList,
   forwardRef, Optional, ElementRef,
-  Renderer2, NgZone, Renderer, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+  Renderer2, NgZone, Renderer, ChangeDetectionStrategy, ViewEncapsulation, HostListener, ViewChild } from '@angular/core';
 import { IonicShellTabComponent } from '../ionic-shell-tab/ionic-shell-tab';
 import { IonicShellProvider } from '../../providers/ionic-shell';
 
@@ -8,8 +8,8 @@ import { RootNode, DomController, DeepLinker,
   ViewController, NavController, App,
   NavControllerBase, Slides } from 'ionic-angular';
 
-  import { Config } from 'ionic-angular';
-  import { Platform } from 'ionic-angular';
+import { Config } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'ionic-shell-tabs',
@@ -57,19 +57,16 @@ export class IonicShellTabsComponent extends Slides {
     this._wrapper = (this.getNativeElement().children[0].querySelector('.swiper-wrapper'));
     this._ionicShellProvider.ionicShellTabsComponent = this;
     this.pager = false;
+    //this.lockSwipes(true);
   }
 
   ngAfterViewInit() {
     this._populateTabsButtons();
 
-    this.ionSlideDidChange.subscribe( () => {
+    /* this.ionSlideDidChange.subscribe( () => {
       this.updateIndicator();
-      // this.lockSlides();
-    });
+    }); */
 
-    /* if( !this.initialSlide ) {
-      this.lockSwipeToPrev(true);
-    } */
   }
 
   private _populateTabsButtons(): void {
@@ -85,22 +82,10 @@ export class IonicShellTabsComponent extends Slides {
   }
 
   public updateIndicator(){
-    this.ionSlideWillChange.emit(this);
+    this._ionicShellProvider.a.indicator.nativeElement.style.transition = 'transform 0.3s';
+    this._ionicShellProvider.a.indicatorHelper.nativeElement.style.transition = 'transform 0.3s';
+    this._ionicShellProvider.a.updateIndicator();
+    // this.ionSlideWillChange.emit(this);
   }
-
-  /* public lockSlides(){
-    setTimeout( () => {
-      if (this.isBeginning()) {
-        this.lockSwipeToPrev(true);
-        this.lockSwipeToNext(false);
-      }else if (this.isEnd()) {
-        this.lockSwipeToPrev(false);
-        this.lockSwipeToNext(true);
-      }else {
-        this.lockSwipeToPrev(false);
-        this.lockSwipeToNext(false);
-      }
-    }, 100);
-  } */
 
 }

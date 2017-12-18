@@ -1,12 +1,18 @@
 ionic-shell-tabs {
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
   .tab-reloader-container{
     position: absolute;
-    z-index: 100;
+    z-index: 101;
     width: 100%;
     text-align: center;
     //top: -3em;
-    z-index: -1;
+    // z-index: -1;
     // bottom: 1em;
+    top: 0;
+    left: 0;
     font-size: 14px;
     transform: translateY(0);
     .tab-reloader{
@@ -46,7 +52,7 @@ ionic-shell-tabs {
       }
     }
     &.reloading{
-      transform: translateY(4em)!important;
+      transform: translateY(10em)!important;
       .tab-reloader-icon{
         animation: spin 1s linear infinite;
         opacity: 1;

@@ -6,6 +6,7 @@ import { IonicShellTabsComponent } from '../components/ionic-shell-tabs/ionic-sh
 @Injectable()
 export class IonicShellProvider {
 
+  a;
   tabsLabels: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
   /**

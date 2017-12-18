@@ -1,10 +1,17 @@
 
-<!-- <span class="tab-reloader-container" aria-hidden="true" #tabReloaderContainer>
+<span class="tab-reloader-container" aria-hidden="true" #tabReloaderContainer>
   <span class="tab-reloader">
     <span class="tab-reloader-icon" #tabReloaderIcon></span>
   </span>
-</span> -->
+</span>
 
 <div class="slide-zoom">
-  <ng-container class="tab" #viewport></ng-container>
+    <!-- <ion-content>
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher> -->
+      <ng-container class="tab" #viewport></ng-container>
+  <!-- </ion-content> -->
 </div>
+
+<!-- (touchstart)="startRefresh($event)" (touchmove)="moveRefresh($event)" (touchend)="finishRefresh($event)" -->
