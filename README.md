@@ -1,7 +1,8 @@
+```bash
 npm i
 npm i -g ionic cordova
 ionic serve
-
+```
 
 
 
